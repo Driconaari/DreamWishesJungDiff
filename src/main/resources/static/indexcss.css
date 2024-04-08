@@ -1,0 +1,37 @@
+/* Add your CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+}
+/* CSS for the container of the images */
+.image-container {
+    text-align: center; /* Center align the images */
+}
+
+/* CSS for the images */
+.small-image {
+    max-width: 400px; /* Set the maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px; /* Add some margin between images */
+    display: inline-block; /* Display the images in a line */
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: auto; /* Center horizontally */
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    margin-top: auto; /* Push the footer to the bottom of the page */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="indexcss.css">
+    <title>Tourist Website</title>
+</head>
+<body>
+<h1>Architectural buildings in Copenhagen that you need to see</h1>
+<div class="intro-text">
+    <p>Here's some information about architectural buildings in Denmark:</p>
+    <p>Denmark is renowned for its rich architectural heritage, blending historic charm with modern design. From the iconic spires of Copenhagen's churches to the sleek lines of contemporary Danish architecture, the country boasts a diverse array of architectural styles. Visitors can explore centuries-old castles, picturesque towns with colorful half-timbered houses, and innovative urban spaces that reflect Denmark's commitment to sustainability and innovation. Whether you're admiring the historic beauty of Rosenborg Castle or marveling at the futuristic designs of Copenhagen's waterfront, Denmark offers a captivating journey through architectural history.</p>
+</div>
+
+<div class="image-container">
+
+<!-- add images to front page -->
+<img src="https://a.cdn-hotels.com/gdcs/production49/d78/a9abb3fa-b0d2-450a-97f5-d662b854615f.jpg" class="small-image">
+<img src="https://dnm.dk/wp-content/uploads/2017/11/Frederiksborg-Slot.-Foto-Charlotte-Dahl.jpg" class="small-image">
+<img src="https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large_vertical/image/131/1313998/23471279-.jpg" class="small-image">
+<img src="https://kongeligeslotte.dk/_Resources/Persistent/68980f5d4007d85a05c8d422642efacb446bda59/Amalienborg_foto_Roberto_Fortuna.jpg" class="small-image">
+
+</div>
+
+
+<h2>Tourist Attractions:</h2>
+<ul>
+    <!-- Use Thymeleaf to loop through the list of tourist attractions -->
+    <li th:each="attraction : ${attractions}">
+        <span th:text="${attraction.name}"></span> - <span th:text="${attraction.description}"></span>
+    </li>
+</ul>
+<ul>
+    <li><a href="/attractions/add">Add Attraction</a></li>
+    <li><a href="/attractions">Go to Attraction List</a></li>
+</ul>
+
+<footer th:insert="~{footer :: footer}"></footer>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="indexcss.css">
-    <title>Tourist Attractions</title>
+    <title>YOUR WISHLIST</title>
 </head>
 <body>
-<h1>Tourist Attractions</h1>
+<h1>Your Wishlist</h1>
 <table border="1">
     <thead>
     <tr>
@@ -22,8 +22,8 @@
     <tr th:each="attraction : ${attractions}">
         <td th:text="${attraction.name}">Name</td>
         <td th:text="${attraction.description}">Description</td>
-        <td th:text="${attraction.city}">City</td>
-        <td th:text="${attraction.location}">Location</td> <!-- Display Location -->
+        <td th:text="${attraction.city}">Price</td>
+        <td th:text="${attraction.location}">Anledning</td> <!-- Display Location -->
         <td th:text="${attraction.tags}">Tags</td>
         <td>
             <!-- Button to edit the attraction -->

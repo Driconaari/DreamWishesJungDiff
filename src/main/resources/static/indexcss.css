@@ -45,7 +45,7 @@ p {
     width: 200px;
     height: 200px;
     margin: 0 10px;
-    animation: floatAnimation 2s ease infinite alternate; /* Animation applied */
+    animation: floatAnimation 1s ease infinite alternate; /* Animation applied */
 }
 
 @keyframes floatAnimation {
@@ -53,7 +53,7 @@ p {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 }
 

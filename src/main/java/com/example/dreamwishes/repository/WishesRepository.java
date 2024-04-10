@@ -10,9 +10,13 @@ import java.util.Optional;
 
 @Repository
 public class WishesRepository {
-
-    private static final String URL = "jdbc:mysql://dreamwishesserver.mysql.database.azure.com:3306/repository?sslMode=required";
-
+//#DataSourceSettings#
+//#LocalDataSource: repository@dreamwishesserver.mysql.database.azure.com
+//#BEGIN#
+//<data-source source="LOCAL" name="repository@dreamwishesserver.mysql.database.azure.com" uuid="84f843c6-b7e9-4033-9c59-afdcdb1b2bf0"><database-info product="MySQL" version="8.0.36" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.36" exact-driver-version="8.2"><extra-name-characters>#@</extra-name-characters><identifier-quote-string>`</identifier-quote-string><jdbc-catalog-is-schema>true</jdbc-catalog-is-schema></database-info><case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/><driver-ref>mysql.8</driver-ref><synchronize>true</synchronize><jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver><jdbc-url>jdbc:mysql://dreamwishesserver.mysql.database.azure.com:3306/repository</jdbc-url><jdbc-additional-properties><property name="com.intellij.clouds.kubernetes.db.host.port"/><property name="com.intellij.clouds.kubernetes.db.enabled" value="false"/><property name="com.intellij.clouds.kubernetes.db.container.port"/></jdbc-additional-properties><secret-storage>master_key</secret-storage><user-name>asger</user-name><schema-mapping><introspection-scope><node kind="schema" qname="@"/></introspection-scope></schema-mapping><working-dir>$ProjectFileDir$</working-dir></data-source>
+//#END#
+private static final String URL = "jdbc:mysql://repository@dreamwishesserver.mysql.database.azure.com:3306/repository?sslMode=required";
+    //private static final String URL = "jdbc:mysql://dreamwishesserver.mysql.database.azure.com:3306/repository?sslMode=required";
     private static final String USERNAME = "asger";
     private static final String PASSWORD = "Bob1234avb";
 

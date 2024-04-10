@@ -151,7 +151,7 @@ public class WishesController {
 
     @PostMapping("/wishes/update")
     public String updateAttraction(@ModelAttribute Wishes updatedAttraction) {
-        wishesRepository.updateTouristAttraction(updatedAttraction);
+        wishesRepository.updateWishList(updatedAttraction);
         return "redirect:/attractions"; // Redirect to the attraction list page after updating
     }
 

@@ -49,8 +49,8 @@ public class WishesRepository {
     }
 
 
-    public void updateTouristAttraction(Wishes updatedWishes) {
-        String query = "UPDATE repository.touristattraction SET name = ?, description = ?, city = ?, tags = ?, location = ? WHERE id = ?";
+    public void updateWishList  (Wishes updatedWishes) {
+            String query = "UPDATE repository.touristattraction SET itemName = ?, description = ?, price = ?, tags = ?, brandofWish = ? WHERE id = ?";
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, updatedWishes.getName());

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Navbar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+    <a href="#" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <!-- Conditionally display "Login" or "Logout" link -->
+    <div th:if="${loggedIn}" class="login">
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${loggedIn}" class="login">
+        <a href="/login">Login</a>
+    </div>
+</div>
+
+
+<!-- Page content -->
+<div style="height:1000px; background-color:#f2f2f2;padding:20px;">
+    <h1>Content</h1>
+    <p>Scroll down to see the navbar stick to the top.</p>
+</div>
+
+</body>
+</html>

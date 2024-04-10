@@ -1,62 +1,59 @@
-package com.example.dreamwishes.user;
+package com.example.dreamwishes.service;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class User {
 
-    private static int nextID = 1; // statci varialbe to genreate unique user id's
-    private int UserID;
+    private static int nextID = 1; // static variable to generate unique user IDs
+    private int userID;
     private String username;
     private String email;
     private String password;
 
-    //map to store users by their username for easy lookup
-
-    private  static Map<String, User> usersByUsername = new HashMap<>();
+    // Map to store users by their username for easy lookup
+    private static Map<String, User> usersByUsername = new HashMap<>();
 
     public User(String username, String email, String password) {
-        this.UserID = nextID++; //assign unique user ID
+        this.userID = nextID++; // assign unique user ID
         this.username = username;
         this.email = email;
         this.password = password;
         usersByUsername.put(username, this); // add user to the map
     }
 
-    //mehtod to create a new user
-
-    public static User createUser (String username, String email, String password) {
+    // Method to create a new user
+    public User createUser(String username, String email, String password) {
         if (usersByUsername.containsKey(username)) {
             System.out.println("Username already exists.");
             return null; // if the user already exists
         }
-
         return new User(username, email, password);
     }
 
-    //method for handle the user login
-
-    public static User login(String username, String password) {
+    // Method for handling user login
+    public User login(String username, String password) {
         if (usersByUsername.containsKey(username)) {
             User user = usersByUsername.get(username);
-            if (user.getPassword().equals(password)){
+            if (user.getPassword().equals(password)) {
                 return user;
-            }else {
+            } else {
                 System.out.println("Incorrect password.");
-                return null; // inccorect password
+                return null; // incorrect password
             }
-        }else {
-            System.out.println("user not found");
+        } else {
+            System.out.println("User not found");
             return null;
         }
     }
 
+    // Getters and setters
     public static int getNextID() {
         return nextID;
     }
 
     public int getUserID() {
-        return UserID;
+        return userID;
     }
 
     public String getUsername() {
@@ -80,7 +77,7 @@ public class User {
     }
 
     public void setUserID(int userID) {
-        UserID = userID;
+        this.userID = userID;
     }
 
     public void setUsername(String username) {
@@ -98,4 +95,6 @@ public class User {
     public static void setUsersByUsername(Map<String, User> usersByUsername) {
         User.usersByUsername = usersByUsername;
     }
+
+
 }

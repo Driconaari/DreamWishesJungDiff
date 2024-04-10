@@ -18,6 +18,7 @@ public class WishesController {
 
     private WishesRepository wishesRepository;
 
+
     @Autowired
     public WishesController(DreamWishesService dreamWishesService, WishesRepository wishesRepository) {
         this.dreamWishesService = dreamWishesService;
@@ -28,21 +29,6 @@ public class WishesController {
         this.dreamWishesService = dreamWishesService;
     }
 
-    //login mappings
-
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password) {
-        // Perform login logic here
-
-        // Redirect to dashboard or login page based on login result
-        return "redirect:/dashboard"; // Example redirect to dashboard page
-    }
 
 
     @GetMapping("/wishes/{name}/tags")
@@ -58,7 +44,7 @@ public class WishesController {
         }
     }
 
-    //show attractions, I saved the old version
+    //show homepage
     @GetMapping("/")
     public String showHomePage(Model model) {
         List<Wishes> attractions = dreamWishesService.getAllWishes();

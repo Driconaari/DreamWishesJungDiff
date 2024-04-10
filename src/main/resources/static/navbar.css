@@ -1,0 +1,32 @@
+/* CSS for navbar */
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Fixed position */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the navbar stays on top of other content */
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+#navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#navbar a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.login {
+    float: right;
+}

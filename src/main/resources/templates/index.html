@@ -7,9 +7,12 @@
     <title>DreamWishes</title>
 </head>
 <body>
+
 <header>
     <h1>DreamWishes</h1>
 </header>
+
+<img class="background" src="/images/flowers2.png">
 
 <section>
     <div>
@@ -18,13 +21,41 @@
     </div>
 </section>
 
-<div class="image-container">
+<img class="background" src="/images/flowers.png">
 
-    <!-- add images to front page -->
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOG6-ipNxEm846isyDUvC-JBdkjLAD7hr0NQ&s" class="small-image">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s" class="small-image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
+<div class="row">
+    <div class="container">
+        <div class="column01">
+            <div class="card01">
+                <h3><button class="button" onclick="location.href='/attractions/add'">Add a Wish</button></h3>
+                <p>Test card1</p>
+                <p>Test2 card1</p>
+                <table></table>
+            </div>
+        </div>
+    </div>
 
+    <div class="column02">
+        <div class="card02">
+            <h3><button class="button" onclick="location.href='/attractions'">Go to Wish List</button></h3>
+            <p>Test card2</p>
+            <p>Test2 card2</p>
+        </div>
+    </div>
+    <div class="column03">
+        <div class="card03">
+            <h3><%= title03 %></h3>
+            <p><%= saga04 %></p>
+            <p><%= saga02 %></p>
+        </div>
+    </div>
+    <div class="column04">
+        <div class="card04">
+            <h3><%= title04 %></h3>
+            <p><%= saga05 %></p>
+            <p><%= saga02 %></p>
+        </div>
+    </div>
 </div>
 
 
@@ -36,9 +67,10 @@
     </li>
 </ul>
 <ul>
-    <li><a href="/attractions/add">Add a Wish</a></li>
-    <li><a href="/attractions">Go to Wish List</a></li>
+    <li><button class="button" onclick="location.href='/attractions/add'">Add a Wish</button></li>
+    <li><button class="button" onclick="location.href='/attractions'">Go to Wish List</button></li>
 </ul>
+
 
 <footer th:insert="~{footer :: footer}"></footer>
 </body>

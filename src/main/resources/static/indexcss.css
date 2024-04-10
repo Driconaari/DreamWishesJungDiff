@@ -1,3 +1,5 @@
+/* indexcss.css file
+
 /* Reset default margin and padding */
 body, h1, h2, p, ul {
     margin: 0;
@@ -9,6 +11,67 @@ body {
     font-family: Arial, sans-serif;
 }
 
+img.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 170%;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.column01,
+.column02,
+.column03,
+.column04 {
+    float: left;
+    width: 30%;
+    padding: 0 10px;
+    margin-bottom: 70px;
+    margin-left: 170px;
+    transform: translate(1px, 1px);
+}
+
+.column02,
+.column04 {
+    float: right;
+    margin-left: 0;
+    margin-right: 170px;
+}
+
+.row {
+    margin: 0 -5px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card01,
+.card02,
+.card03,
+.card04 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f0eeee;
+}
+
+img {
+    border: 5px solid #555;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
 /* Header styles */
 header {
     background-color: #4CAF50;
@@ -32,6 +95,18 @@ p {
     font-size: 18px;
     margin-bottom: 20px;
 }
+
+img.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 170%;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+}
+
 
 /* Image container styles */
 .image-container {
@@ -63,9 +138,7 @@ h2 {
     margin-bottom: 10px;
 }
 
-ul {
-    list-style-type: none;
-}
+
 
 li {
     font-size: 16px;
@@ -80,3 +153,112 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+button {
+    position: relative;
+    margin: 0;
+    padding: 0.8em 1em;
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    background-color: #333;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+    font-family: inherit;
+    z-index: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+button:hover {
+    animation: sh0 0.5s ease-in-out both;
+}
+
+/* Style the counter cards */
+.card01,
+.card02,
+.card03,
+.card04 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f0eeee;
+    position: relative; /* Added position relative for button centering */
+}
+
+/* Center the buttons */
+.card01 button,
+.card02 button,
+.card03 button,
+.card04 button {
+    margin: 0 auto; /* Center horizontally */
+    display: block; /* Ensure button takes full width */
+}
+
+
+@keyframes sh0 {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: rotate(7deg) translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: rotate(-7deg) translate3d(0, 0, 0);
+    }
+
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+button:hover span {
+    animation: storm 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+
+button::before,
+button::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0;
+    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+    z-index: -1;
+    transform: translate(100%, -25%) translate3d(0, 0, 0);
+}
+
+button:hover::before,
+button:hover::after {
+    opacity: 0.15;
+    transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+button:hover::before {
+    transform: translate3d(50%, 0, 0) scale(0.9);
+}
+
+button:hover::after {
+    transform: translate(50%, 0) scale(1.1);
+}
+
+
+

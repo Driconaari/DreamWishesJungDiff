@@ -28,6 +28,23 @@ public class WishesController {
         this.dreamWishesService = dreamWishesService;
     }
 
+    //login mappings
+
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password) {
+        // Perform login logic here
+
+        // Redirect to dashboard or login page based on login result
+        return "redirect:/dashboard"; // Example redirect to dashboard page
+    }
+
+
     @GetMapping("/wishes/{name}/tags")
     public String getAttractionTags(@PathVariable String name, Model model) {
         Optional<Wishes> attractionOptional = dreamWishesService.getAttractionByName(name);

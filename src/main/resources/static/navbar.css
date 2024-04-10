@@ -2,16 +2,23 @@
 
 /* Navbar styles */
 ul {
+    width: 100%;
+    position: fixed;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #529bd9; /* Change background color as needed */
+    z-index: 999;
+
+
 }
 
 li {
     float: left;
 }
+
+
 
 li a {
     display: block;
@@ -19,6 +26,7 @@ li a {
     text-align: center;
     padding: 30px;
     text-decoration: none;
+
 }
 header {
     background-color: #529bd9;
@@ -26,6 +34,8 @@ header {
     padding: 10px;
     text-align: center;
     margin-right: 90px;
+    margin-top: 15px;
+    z-index: 999;
 }
 
 li a:hover {

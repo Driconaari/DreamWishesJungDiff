@@ -49,20 +49,20 @@ public class WishesRepository {
     }
 
 
-    public void updateTouristAttraction(Wishes updatedAttraction) {
+    public void updateTouristAttraction(Wishes updatedWishes) {
         String query = "UPDATE repository.touristattraction SET name = ?, description = ?, city = ?, tags = ?, location = ? WHERE id = ?";
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, updatedAttraction.getName());
-            preparedStatement.setString(2, updatedAttraction.getDescription());
-            preparedStatement.setString(3, updatedAttraction.getCity());
+            preparedStatement.setString(1, updatedWishes.getName());
+            preparedStatement.setString(2, updatedWishes.getDescription());
+            preparedStatement.setString(3, updatedWishes.getCity());
 
             // Convert the list of tags to a single string separated by commas
-            String tagsAsString = String.join(",", updatedAttraction.getTags());
+            String tagsAsString = String.join(",", updatedWishes.getTags());
             preparedStatement.setString(4, tagsAsString);
 
-            preparedStatement.setString(5, updatedAttraction.getLocation());
-            preparedStatement.setInt(6, updatedAttraction.getId());
+            preparedStatement.setString(5, updatedWishes.getLocation());
+            preparedStatement.setInt(6, updatedWishes.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

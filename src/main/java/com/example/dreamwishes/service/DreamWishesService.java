@@ -19,7 +19,7 @@ public class DreamWishesService {
     }
 
 
-    public List<Wishes> getAllAttractions() {
+    public List<Wishes> getAllWishes() {
         return wishesRepository.findAll();
     }
 

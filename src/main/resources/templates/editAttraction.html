@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>Edit Attraction</title>
     <link rel="stylesheet" type="text/css" href="/stylesForAddAttraction.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
 </head>
 <body>
+
+<ul>
+    <li><a href="/"><i class="fa fa-fw fa-home"></i>Home</a></li>
+</ul>
 
 <form th:action="@{/attractions/update}" th:object="${attraction}" method="post" class="attraction-form">
     <!-- Hidden input for ID -->

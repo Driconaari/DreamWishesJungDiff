@@ -8,7 +8,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #529bd9; /* Change background color as needed */
+    background-color: #a9cdf3;
     z-index: 999;
 
 
@@ -26,10 +26,11 @@ li a {
     text-align: center;
     padding: 30px;
     text-decoration: none;
+    margin-top: auto;
 
 }
 header {
-    background-color: #529bd9;
+    background-color: #a9cdf3;
     color: #ffffff;
     padding: 10px;
     text-align: center;
@@ -38,6 +39,4 @@ header {
     z-index: 999;
 }
 
-li a:hover {
-    background-color: #09468a; /* Change hover background color as needed */
-}
+

@@ -9,6 +9,7 @@ body, h1, h2, p, ul {
 /* Set global font styles */
 body {
     font-family: Arial, sans-serif;
+
 }
 
 
@@ -51,6 +52,17 @@ body {
     padding: 16px;
     text-align: center;
     background-color: #f0eeee;
+}
+
+img.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
 }
 
 

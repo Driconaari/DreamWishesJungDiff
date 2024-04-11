@@ -27,6 +27,10 @@ public class Items {
     private double price;
     private String name;
 
+
+    @Column (name = "Available")
+    private boolean available;
+
     // Constructors, getters, and setters
     // You can generate these using your IDE or manually write them
 

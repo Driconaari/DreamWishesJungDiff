@@ -1,9 +1,8 @@
 package com.example.dreamwishes.service;
 
+import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.repository.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,24 +15,24 @@ public class UserService {
     private UserRepository userRepository;
 
     // Create operation
-    public User createUser(User user) {
+    public Users createUser(Users user) {
         return userRepository.save(user);
     }
 
     // Read operation
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<Users> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
     // Update operation
-    public User updateUser(Long id, SecurityProperties.User updatedUser) {
-        Optional<User> userOptional = userRepository.findById(id);
+    public Users updateUser(Long id, Users updatedUser) {
+        Optional<Users> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
+            Users user = userOptional.get();
             user.setUsername(updatedUser.getUsername());
             user.setEmail(updatedUser.getEmail());
             user.setPassword(updatedUser.getPassword());
@@ -51,6 +50,17 @@ public class UserService {
     }
 
     public boolean login(String username, String password) {
+        // Find user by username
+        Users user = userRepository.findByUsername(username);
 
+        // Check if user exists and if the password matches
+        return user != null && user.getPassword().equals(password);
     }
+
+    public Optional<Users> getUserId(String username) {
+        // Your logic to retrieve the user by username
+        Users user = userRepository.findByUsername(username);
+        return Optional.ofNullable(user);
+    }
+
 }

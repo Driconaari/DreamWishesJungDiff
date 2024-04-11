@@ -1,13 +1,6 @@
 package com.example.dreamwishes.repository;
 
-import com.example.dreamwishes.model.Wishes;
-import org.springframework.stereotype.Repository;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+/*
 @Repository
 public class WishesRepository {
 //#DataSourceSettings#
@@ -171,5 +164,7 @@ private static final String URL = "jdbc:mysql://repository@dreamwishesserver.mys
         return tags;
     }
 
-}
+
+
+ */
 

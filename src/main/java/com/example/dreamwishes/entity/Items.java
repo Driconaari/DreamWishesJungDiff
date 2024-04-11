@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Items")
-public class Item {
+public class Items {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class Item {
     // You can generate these using your IDE or manually write them
 
     // Constructors
-    public Item() {
+    public Items() {
     }
 
-    public Item(String itemName, String description, double price) {
+    public Items(String itemName, String description, double price) {
         this.itemName = itemName;
         this.description = description;
         this.price = price;

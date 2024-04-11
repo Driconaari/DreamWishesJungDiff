@@ -1,16 +1,6 @@
 package com.example.dreamwishes.controller;
 
-import com.example.dreamwishes.model.Wishes;
-import com.example.dreamwishes.repository.WishesRepository;
-import com.example.dreamwishes.service.DreamWishesService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
+/*
 @Controller
 public class WishesController {
 
@@ -160,3 +150,5 @@ public class WishesController {
 
 
 }
+
+ */

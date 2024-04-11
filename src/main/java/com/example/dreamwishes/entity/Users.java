@@ -65,4 +65,8 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Object getId() {
+        return userID;
+    }
 }

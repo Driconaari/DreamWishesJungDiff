@@ -1,6 +1,5 @@
 package com.example.dreamwishes.entity;
 
-import com.example.dreamwishes.repository.Items;
 import jakarta.persistence.*;
 
 import java.security.Timestamp;

@@ -1,13 +1,6 @@
 package com.example.dreamwishes.service;
 
-import com.example.dreamwishes.model.Wishes;
-import com.example.dreamwishes.repository.WishesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-
+/*
 @Service
 public class DreamWishesService {
 
@@ -34,3 +27,5 @@ public class DreamWishesService {
         wishesRepository.deleteAttractionByName(name);
     }
 }
+
+ */

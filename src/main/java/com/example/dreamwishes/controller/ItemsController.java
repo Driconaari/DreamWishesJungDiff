@@ -1,5 +1,7 @@
 package com.example.dreamwishes.controller;
 
+import com.example.dreamwishes.dto.ItemsDTO;
+import com.example.dreamwishes.service.ItemsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

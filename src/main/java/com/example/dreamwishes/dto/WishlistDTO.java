@@ -6,7 +6,7 @@ import java.util.List;
 public class WishlistDTO {
     private Long id;
     private Long userId;
-    private List<ItemDTO> items;
+    private List<ItemsDTO> items;
 
     // Getters and setters
     // You can also include additional constructors and methods as needed
@@ -27,11 +27,11 @@ public class WishlistDTO {
         this.userId = userId;
     }
 
-    public List<ItemDTO> getItems() {
+    public List<ItemsDTO> getItems() {
         return items;
     }
 
-    public void setItems(List<ItemDTO> items) {
+    public void setItems(List<ItemsDTO> items) {
         this.items = items;
     }
 }

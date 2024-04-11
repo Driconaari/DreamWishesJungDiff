@@ -1,11 +1,9 @@
 package com.example.dreamwishes.controller;
 
+import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.service.WishlistService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -27,8 +25,8 @@ public class WishlistController {
     }
 
     @GetMapping("/{wishlistId}")
-    public ResponseEntity<WishlistDTO> getWishlist(@PathVariable Long wishlistId) {
-        WishlistDTO wishlistDTO = wishlistService.getWishlistById(wishlistId);
+    public ResponseEntity<Long> getWishlist(@PathVariable Long wishlistId) {
+        Long wishlistDTO = wishlistService.getWishlistById(wishlistId);
         return ResponseEntity.ok(wishlistDTO);
     }
 

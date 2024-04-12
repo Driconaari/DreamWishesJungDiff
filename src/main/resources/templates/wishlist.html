@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Wishlist</title>
+</head>
+<body>
+
+<h1>User Wishlist</h1>
+
+<!-- Display user information -->
+<div>
+    <h2>User Information:</h2>
+    <p>User ID: <span th:text="${user.id}"></span></p>
+    <p>Username: <span th:text="${user.username}"></span></p>
+    <!-- Add more user information as needed -->
+</div>
+
+<!-- Display wishlist items -->
+<div>
+    <h2>Wishlist Items:</h2>
+    <ul>
+        <!-- Loop through each item in the wishlist -->
+        <li th:each="item : ${wishlist.items}">
+            <!-- Display item details -->
+            <p>Item ID: <span th:text="${item.id}"></span></p>
+            <p>Name: <span th:text="${item.name}"></span></p>
+            <p>Description: <span th:text="${item.description}"></span></p>
+            <!-- Add more item details as needed -->
+
+            <!-- Add buttons for actions -->
+            <form th:action="@{/wishlist/delete}" method="post">
+                <input type="hidden" name="itemId" th:value="${item.id}">
+                <input type="submit" value="Delete">
+            </form>
+
+            <!-- Add a form for updating item details -->
+            <form th:action="@{/wishlist/update}" method="post">
+                <input type="hidden" name="itemId" th:value="${item.id}">
+                <input type="text" name="name" placeholder="New name">
+                <input type="text" name="description" placeholder="New description">
+                <!-- Add more fields for updating item details as needed -->
+                <input type="submit" value="Update">
+            </form>
+        </li>
+    </ul>
+</div>
+
+<!-- Form for adding a new item to the wishlist -->
+<div>
+    <h2>Add New Item to Wishlist:</h2>
+    <form th:action="@{/wishlist/add}" method="post">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="description" placeholder="Description">
+        <!-- Add more fields for adding a new item as needed -->
+        <input type="submit" value="Add">
+    </form>
+</div>
+
+</body>
+</html>

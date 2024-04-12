@@ -41,13 +41,13 @@
 <h2>Wish List:</h2>
 <ul>
     <!-- Use Thymeleaf to loop through the list of tourist attractions -->
-    <li th:each="wish : ${attractions}">
+    <li th:each="wish : ${Wishlist}">
         <span th:text="${wish.name}"></span> - <span th:text="${wish.description}"></span>
     </li>
 </ul>
 <ul>
     <li><a href="/wishes/add">Add a Wish</a></li>
-    <li><a href="/wishes">Go to Wish List</a></li>
+    <li><a href="/api/wishlists">Go to Wish List</a></li>
 </ul>
 
 <footer th:insert="~{footer :: footer}"></footer>

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.security.Timestamp;
 
 @Entity
-@Table(name = "Wishlist")
+@Table(name = "wishlist")
 public class Wishlist {
 
     @Id

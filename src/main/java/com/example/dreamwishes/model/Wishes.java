@@ -1,96 +1,64 @@
 package com.example.dreamwishes.model;
 
-
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-
-
-@Component
-@Primary
 public class Wishes {
 
-    private int id;
-    private String name;
-    private String description;
-    private String city;
-    private String tags;
-    private String location;
+    private Long wishlistId;
+    private Long userId;
+    private Long itemId;
+    private Integer priority;
+    private String timestamp; // You might want to use a proper data type for timestamp
 
-    // Constructor for adding attractions without ID
-
+    // Default constructor
     public Wishes() {
-        this.name = name;
-        this.description = description;
-        this.city = city;
-        this.tags = tags;
-        this.location = location;
     }
 
-
-    // Constructor for editing attractions with ID
-    public Wishes(int id, String name, String description, String tags, String location, String city) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.tags = tags;
-        this.location = location;
-        this.city = city;
+    // Constructor with fields
+    public Wishes(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
+        this.wishlistId = wishlistId;
+        this.userId = userId;
+        this.itemId = itemId;
+        this.priority = priority;
+        this.timestamp = timestamp;
     }
 
-
-
-    public int getId() {
-        return id;
+    // Getters and setters
+    public Long getWishlistId() {
+        return wishlistId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWishlistId(Long wishlistId) {
+        this.wishlistId = wishlistId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-   /* public void setTags(String tags) {
-        this.tags = tags;
+    public Long getItemId() {
+        return itemId;
     }
 
-    */
-
-    public String getName() {
-        return name;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public String getCity() {
-        return city;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
-    public String getTags() {
-        return tags;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    public void setLocation(String defaultLocation) {
-        this.location = defaultLocation;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }
-

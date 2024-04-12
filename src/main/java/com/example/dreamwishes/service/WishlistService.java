@@ -1,6 +1,5 @@
 package com.example.dreamwishes.service;
 
-import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,35 +7,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class WishlistService {
 
-    private final WishlistRepository wishlistRepository;
-
     @Autowired
-    public WishlistService(WishlistRepository wishlistRepository) {
-        this.wishlistRepository = wishlistRepository;
-    }
+    private WishlistRepository wishlistRepository;
 
-    public Wishlist addToWishlist(Wishlist wishlistItem) {
-        return wishlistRepository.save(wishlistItem);
-    }
-
-    public List<Wishlist> getWishlistItems() {
+    public List<Wishlist> getAllWishlists() {
         return wishlistRepository.findAll();
     }
-    public void removeFromWishlist(Long itemId) {
-        wishlistRepository.deleteById(itemId);
+
+    public Wishlist getWishlistById(Long id) {
+        return wishlistRepository.findById(id).orElse(null);
     }
 
-
-    public WishlistDTO createWishlist(WishlistDTO wishlistDTO) {
-        return wishlistDTO;
+    public Wishlist createWishlist(Wishlist wishlist) {
+        return wishlistRepository.save(wishlist);
     }
 
-    public Long getWishlistById(Long wishlistId) {
-        return  wishlistId;
+    public void deleteWishlist(Long id) {
+        wishlistRepository.deleteById(id);
     }
-
-    // Other methods as needed for wishlist operations
 }
+
+

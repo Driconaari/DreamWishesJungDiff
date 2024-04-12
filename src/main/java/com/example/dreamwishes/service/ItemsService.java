@@ -30,13 +30,14 @@ public class ItemsService {
     // Helper method to map Items entity to ItemsDTO
     private ItemsDTO mapToDTO(Items item) {
         ItemsDTO itemsDTO = new ItemsDTO();
-        itemsDTO.setId(item.getId());
-        itemsDTO.setName(item.getName());
+        itemsDTO.setId(item.getItemId()); // Assuming the ID field in the entity is named itemId
+        itemsDTO.setName(item.getItemName()); // Assuming the name field in the entity is named itemName
         itemsDTO.setDescription(item.getDescription());
         itemsDTO.setPrice(item.getPrice());
         // Map other fields as needed
         return itemsDTO;
     }
+
 
     public ItemsDTO createItem(ItemsDTO itemsDTO) {
         // Map ItemsDTO to Items entity
@@ -50,15 +51,17 @@ public class ItemsService {
 
         return savedItemDTO;
     }
+
     // Helper method to map ItemsDTO to Items entity
     private Items mapToEntity(ItemsDTO itemsDTO) {
         Items item = new Items();
-        item.setName(itemsDTO.getName());
+        item.setItemName(itemsDTO.getName());
         item.setDescription(itemsDTO.getDescription());
         item.setPrice(itemsDTO.getPrice());
         // Map other fields as needed
         return item;
     }
+
 
 }
 

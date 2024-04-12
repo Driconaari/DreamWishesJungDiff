@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
-
+    List<Wishlist> findByUserUsernameContaining(String username);
 
 
     // Find a wishlist by user ID
@@ -21,13 +21,7 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
     List<Wishlist> findByUserEmail(String email);
 
     // Find wishlists by user's name containing a keyword
-    List<Wishlist> findByUserNameContaining(String keyword);
-
-    // Find wishlists by user's city
-    List<Wishlist> findByUserCity(String city);
-
-    // Find wishlists by user's country
-    List<Wishlist> findByUserCountry(String country);
+    List<Wishlist> findByUserUserNameContaining(String userName);
 
     // You can define more query methods as needed for your application
 }

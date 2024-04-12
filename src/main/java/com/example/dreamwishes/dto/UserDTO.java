@@ -4,8 +4,6 @@ public class UserDTO {
     private Long id;
     private String username;
     private String email;
-    private String city;
-    private String country;
 
     // Getters and setters
     // You can also include additional constructors and methods as needed
@@ -34,19 +32,5 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }

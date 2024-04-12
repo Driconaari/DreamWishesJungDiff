@@ -9,8 +9,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-
-
     // Custom query method to find a user by username
     Users findByUsername(String username);
 

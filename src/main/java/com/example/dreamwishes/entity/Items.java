@@ -1,12 +1,6 @@
 package com.example.dreamwishes.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.metamodel.SingularAttribute;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-import java.io.Serializable;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Entity
 @Table(name = "Items")
@@ -25,14 +19,12 @@ public class Items {
 
     @Column(name = "Price")
     private double price;
-    private String name;
 
-
-    @Column (name = "Available")
+    @Column(name = "Available")
     private boolean available;
 
-    // Constructors, getters, and setters
-    // You can generate these using your IDE or manually write them
+    @Column(name = "Category")
+    private String category;
 
     // Constructors
     public Items() {
@@ -44,7 +36,7 @@ public class Items {
         this.price = price;
     }
 
-    // Getters and setters
+    // Getters and Setters
     public Long getItemId() {
         return itemId;
     }
@@ -77,17 +69,20 @@ public class Items {
         this.price = price;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public SingularAttribute<AbstractPersistable, Serializable> getId() {
-        return id;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
-    public String getName() {
-        // Replace this with the logic to retrieve the name from your DTO object
-        return name;
+    public String getCategory() {
+        return category;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
+

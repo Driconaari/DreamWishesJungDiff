@@ -1,13 +1,8 @@
 package com.example.dreamwishes.dto;
 
 
-import jakarta.persistence.metamodel.SingularAttribute;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-import java.io.Serializable;
-
 public class ItemsDTO {
-    private SingularAttribute<AbstractPersistable, Serializable> id;
+    private Long id;
     private String name;
     private String description;
     private double price;
@@ -15,11 +10,11 @@ public class ItemsDTO {
     // Getters and setters
     // You can also include additional constructors and methods as needed
 
-    public SingularAttribute<AbstractPersistable, Serializable> getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(SingularAttribute<AbstractPersistable, Serializable> id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

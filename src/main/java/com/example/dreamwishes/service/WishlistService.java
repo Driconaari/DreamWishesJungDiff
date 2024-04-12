@@ -25,10 +25,10 @@ public class WishlistService {
     public List<Wishlist> getWishlistItems() {
         return wishlistRepository.findAll();
     }
-
     public void removeFromWishlist(Long itemId) {
         wishlistRepository.deleteById(itemId);
     }
+
 
     public WishlistDTO createWishlist(WishlistDTO wishlistDTO) {
         return wishlistDTO;

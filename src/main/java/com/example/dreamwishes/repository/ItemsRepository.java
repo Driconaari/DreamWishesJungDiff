@@ -9,12 +9,11 @@ import java.util.List;
 @Repository
 public interface ItemsRepository extends JpaRepository<Items, Long> {
 
-
     // Custom query methods can be defined here based on your requirements
     // For example:
 
     // Find an item by its name
-    Items findByName(String name);
+    Items findByItemName(String name);
 
     // Find items by their category
     List<Items> findByCategory(String category);
@@ -32,7 +31,7 @@ public interface ItemsRepository extends JpaRepository<Items, Long> {
     List<Items> findByAvailable(boolean available);
 
     // Find items by their name or description containing a keyword
-    List<Items> findByNameContainingOrDescriptionContaining(String nameKeyword, String descriptionKeyword);
+    List<Items> findByItemNameContainingOrDescriptionContaining(String nameKeyword, String descriptionKeyword);
 
     // You can define more query methods as needed for your application
 }

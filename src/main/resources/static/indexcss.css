@@ -9,18 +9,9 @@ body, h1, h2, p, ul {
 /* Set global font styles */
 body {
     font-family: Arial, sans-serif;
+
 }
 
-img.background {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    width: 100%;
-    height: 170%;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-}
 
 .column01,
 .column02,
@@ -43,6 +34,8 @@ img.background {
 
 .row {
     margin: 0 -5px;
+    margin-top: 10px; /* Adjust this value to match the height of your navbar */
+
 }
 
 .row:after {
@@ -61,9 +54,17 @@ img.background {
     background-color: #f0eeee;
 }
 
-img {
-    border: 5px solid #555;
+img.background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
 }
+
 
 @media screen and (max-width: 600px) {
     .column {
@@ -71,13 +72,6 @@ img {
         display: block;
         margin-bottom: 20px;
     }
-}
-/* Header styles */
-header {
-    background-color: #4CAF50;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
 }
 
 /* Section styles */
@@ -96,16 +90,6 @@ p {
     margin-bottom: 20px;
 }
 
-img.background {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    width: 100%;
-    height: 170%;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-}
 
 
 /* Image container styles */
@@ -145,10 +129,7 @@ li {
     margin-bottom: 5px;
 }
 
-a {
-    color: #4CAF50;
-    text-decoration: none;
-}
+
 
 a:hover {
     text-decoration: underline;
@@ -166,7 +147,7 @@ button {
     cursor: pointer;
     border: none;
     text-transform: uppercase;
-    background-color: #333;
+    background-color: #0a59af;
     border-radius: 10px;
     color: #fff;
     font-weight: 300;
@@ -259,6 +240,3 @@ button:hover::before {
 button:hover::after {
     transform: translate(50%, 0) scale(1.1);
 }
-
-
-

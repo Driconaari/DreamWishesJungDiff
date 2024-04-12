@@ -70,7 +70,7 @@ public class WishesController {
     public String getAllWishes(Model model) {
         List<Wishes> attractions = dreamWishesService.getAllWishes();
         model.addAttribute("attractions", attractions);
-        return "attractionList"; // Assuming "attractionList" is the name of your Thymeleaf template
+        return "WishList"; // Assuming "attractionList" is the name of your Thymeleaf template
     }
 
     @PostMapping("/wishes/save")
@@ -101,7 +101,7 @@ public class WishesController {
         model.addAttribute("cities", cities);
         model.addAttribute("tags", tags);
 
-        return "addAttraction";
+        return "addWish";
     }
 
 
@@ -142,7 +142,7 @@ public class WishesController {
             model.addAttribute("cities", cities);
             model.addAttribute("tags", tags);
 
-            return "editAttraction"; // Assuming "editAttraction" is the name of your Thymeleaf template for editing an attraction
+            return "editWish"; // Assuming "editAttraction" is the name of your Thymeleaf template for editing an attraction
         } else {
             // Handle attraction not found
             return "error";

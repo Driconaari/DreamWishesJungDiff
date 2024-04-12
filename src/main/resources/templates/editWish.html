@@ -2,10 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Attraction</title>
+    <title>Edit Wishlist</title>
     <link rel="stylesheet" type="text/css" href="/stylesForAddAttraction.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
 </head>
 <body>
+
+<ul>
+    <li><a href="/"><img src="/images/cloud-icon-12863.png" alt="Home"></a></li>
+    <header>
+        <h1>DreamWishes</h1>
+    </header>
+</ul>
 
 <form th:action="@{/attractions/update}" th:object="${attraction}" method="post" class="attraction-form">
     <!-- Hidden input for ID -->

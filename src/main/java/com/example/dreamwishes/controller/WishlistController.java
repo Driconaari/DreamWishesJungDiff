@@ -1,12 +1,17 @@
 package com.example.dreamwishes.controller;
 
-import ch.qos.logback.core.model.Model;
+//import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
+
+import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.service.WishlistService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+
 
 import java.net.URI;
 import java.util.List;
@@ -22,11 +27,17 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-    @GetMapping("/api/wishlists")
+    @GetMapping("/wishlist")
     public String getWishlistPage(Model model) {
-        // Add any necessary data to the model
-        return "wishlist"; // Return the name of the HTML template
+        WishlistDTO wishlistDTO = new WishlistDTO();
+        // Populate wishlistDTO with data from your service or database
+        // For example:
+        // wishlistDTO.setItems(wishlistService.getAllItems());
+
+        model.addAttribute("wishlistDTO", wishlistDTO);
+        return "wishlist";
     }
+
 
 
     @PostMapping
@@ -61,4 +72,17 @@ public class WishlistController {
         wishlistService.deleteWishlist(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<Wishlist> addWish(@RequestBody Wishlist wishlist) {
+        Wishlist createdWishlist = wishlistService.createWishlist(wishlist);
+        if (createdWishlist != null) {
+            return ResponseEntity
+                    .created(URI.create("/api/wishlists/" + createdWishlist.getWishlistId()))
+                    .body(createdWishlist);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

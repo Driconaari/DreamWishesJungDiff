@@ -16,13 +16,13 @@
 
     <!-- Conditionally display "Login" or "Logout" link -->
     <div th:if="${loggedIn}" class="login">
-        <p>Welcome, <span th:text="${username}"></span>!</p>
         <a href="/logout">Logout</a>
     </div>
     <div th:unless="${loggedIn}" class="login">
         <a href="/login">Login</a>
     </div>
 </div>
+
 
 
 <!-- Page content -->

@@ -1,9 +1,12 @@
 package com.example.dreamwishes.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
+@Component
 public class Users {
 
     @Id
@@ -69,4 +72,6 @@ public class Users {
     public Object getId() {
         return userID;
     }
+
 }
+

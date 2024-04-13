@@ -1,8 +1,11 @@
 package com.example.dreamwishes.service;
 
 import com.example.dreamwishes.entity.Users;
+import com.example.dreamwishes.model.Wishes;
 import com.example.dreamwishes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,4 +72,16 @@ public class UserService {
         return Optional.ofNullable(user);
     }
 
+    // Retrieve wishes for the logged-in user
+    public List<Wishes> getLoggedInUserWishes() {
+        // Get the username of the logged-in user
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+
+        // Retrieve the user object using the username
+        Users user = userRepository.findByUsername(username);
+
+        // Return wishes associated with the user
+        return user.getWishes();
+    }
 }

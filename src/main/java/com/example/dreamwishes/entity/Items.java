@@ -1,88 +1,101 @@
-package com.example.dreamwishes.entity;
+    package com.example.dreamwishes.entity;
 
-import javax.persistence.*;
+    import com.example.dreamwishes.model.Wishes;
 
-@Entity
-@Table(name = "Items")
-public class Items {
+    import javax.persistence.*;
+    import java.util.List;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ItemID")
-    private Long itemId;
+    @Entity
+    @Table(name = "Items")
+    public class Items {
 
-    @Column(name = "ItemName")
-    private String itemName;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "ItemID")
+        private Long itemId;
 
-    @Column(name = "Description")
-    private String description;
+        @Column(name = "ItemName")
+        private String itemName;
 
-    @Column(name = "Price")
-    private double price;
+        @Column(name = "Description")
+        private String description;
 
-    @Column(name = "Available")
-    private boolean available;
+        @Column(name = "Price")
+        private double price;
 
-    @Column(name = "Category")
-    private String category;
+        @Column(name = "Available")
+        private boolean available;
 
-    // Constructors
-    public Items() {
+        @Column(name = "Category")
+        private String category;
+
+        // Constructors
+        public Items() {
+        }
+
+        public Items(String itemName, String description, double price) {
+            this.itemName = itemName;
+            this.description = description;
+            this.price = price;
+        }
+
+        // Getters and Setters
+        public Long getItemId() {
+            return itemId;
+        }
+
+        public void setItemId(Long itemId) {
+            this.itemId = itemId;
+        }
+
+        public String getItemName() {
+            return itemName;
+        }
+
+        public void setItemName(String itemName) {
+            this.itemName = itemName;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public boolean isAvailable() {
+            return available;
+        }
+
+        public void setAvailable(boolean available) {
+            this.available = available;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        @OneToMany(mappedBy = "item")
+        private List<Wishes> wishes;
+
+        public List<Wishes> getWishes() {
+            return wishes;
+        }
+
+        public void setWishes(List<Wishes> wishes) {
+            this.wishes = wishes;
+        }
     }
-
-    public Items(String itemName, String description, double price) {
-        this.itemName = itemName;
-        this.description = description;
-        this.price = price;
-    }
-
-    // Getters and Setters
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-}
-

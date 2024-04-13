@@ -1,6 +1,6 @@
 package com.example.dreamwishes.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Items")

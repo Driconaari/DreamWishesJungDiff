@@ -25,14 +25,18 @@ public class WishlistService {
         // Fetch the user's wishlist by username
         List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
 
-        // Extract wishes from wishlists
+        // Extract wishes from items in wishlists
         List<Wishes> wishes = new ArrayList<>();
         for (Wishlist wishlist : wishlists) {
-            wishes.addAll(wishlist.getWishes());
+            Items item = wishlist.getItem();
+            if (item != null) {
+                wishes.addAll(item.getWishes());
+            }
         }
 
         return wishes;
     }
+
 
     // Original methods from your old WishlistService class
 
@@ -94,4 +98,6 @@ public class WishlistService {
             return Collections.emptyList(); // Wishlist not found, return an empty list
         }
     }
+
+
 }

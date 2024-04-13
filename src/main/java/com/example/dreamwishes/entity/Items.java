@@ -29,16 +29,6 @@
         @Column(name = "Category")
         private String category;
 
-        // Constructors
-        public Items() {
-        }
-
-        public Items(String itemName, String description, double price) {
-            this.itemName = itemName;
-            this.description = description;
-            this.price = price;
-        }
-
         // Getters and Setters
         public Long getItemId() {
             return itemId;

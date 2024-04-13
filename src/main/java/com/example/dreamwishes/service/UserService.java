@@ -1,7 +1,7 @@
 package com.example.dreamwishes.service;
 
 import com.example.dreamwishes.entity.Users;
-import com.example.dreamwishes.model.Wishes;
+import com.example.dreamwishes.entity.Wishes;
 import com.example.dreamwishes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

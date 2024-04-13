@@ -3,7 +3,7 @@ package com.example.dreamwishes.service;
 import com.example.dreamwishes.entity.Items;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
-import com.example.dreamwishes.model.Wishes;
+import com.example.dreamwishes.model.WishesModel;
 import com.example.dreamwishes.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,12 +21,12 @@ public class WishlistService {
         this.wishlistRepository = wishlistRepository;
     }
 
-    public List<Wishes> getWishesByUsername(String username) {
+    public List<WishesModel> getWishesByUsername(String username) {
         // Fetch the user's wishlist by username
         List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
 
         // Extract wishes from items in wishlists
-        List<Wishes> wishes = new ArrayList<>();
+        List<WishesModel> wishes = new ArrayList<>();
         for (Wishlist wishlist : wishlists) {
             Items item = wishlist.getItem();
             if (item != null) {
@@ -57,7 +57,7 @@ public class WishlistService {
     }
 
     // Method to get all wishes from all wishlists
-    public Collection<? extends Wishes> getUserWishes() {
+    public Collection<? extends WishesModel> getUserWishes() {
         // Get the username of the currently logged-in user
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -87,7 +87,7 @@ public class WishlistService {
         wishlistRepository.deleteById(wishlistId);
     }
 
-    public List<Wishes> getWishesByWishlistId(Long wishlistId) {
+    public List<WishesModel> getWishesByWishlistId(Long wishlistId) {
         Optional<Wishlist> wishlistOptional = wishlistRepository.findById(wishlistId);
         if (wishlistOptional.isPresent()) {
             Wishlist wishlist = wishlistOptional.get();

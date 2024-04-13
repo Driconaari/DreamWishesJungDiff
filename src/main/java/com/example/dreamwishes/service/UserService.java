@@ -1,7 +1,7 @@
 package com.example.dreamwishes.service;
 
 import com.example.dreamwishes.entity.Users;
-import com.example.dreamwishes.entity.Wishes;
+import com.example.dreamwishes.entity.WishesEntity;
 import com.example.dreamwishes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -73,7 +73,7 @@ public class UserService {
     }
 
     // Retrieve wishes for the logged-in user
-    public List<Wishes> getLoggedInUserWishes() {
+    public List<WishesEntity> getLoggedInUserWishes() {
         // Get the username of the logged-in user
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails)principal).getUsername();

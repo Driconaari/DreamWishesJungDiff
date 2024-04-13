@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "wishes")
-public class Wishes {
+public class WishesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Wishes {
     @Column(name = "Timestamp", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
-    public Wishes(Long wishId, Items item, Users user, Integer priority, Timestamp timestamp) {
+    public WishesEntity(Long wishId, Items item, Users user, Integer priority, Timestamp timestamp) {
         this.wishId = wishId;
         this.item = item;
         this.user = user;
@@ -35,10 +35,10 @@ public class Wishes {
     }
 
     // Constructors
-    public Wishes() {
+    public WishesEntity() {
     }
 
-    public Wishes(Items item, Users user, Integer priority) {
+    public WishesEntity(Items item, Users user, Integer priority) {
         this.item = item;
         this.user = user;
         this.priority = priority;

@@ -1,6 +1,6 @@
 package com.example.dreamwishes.model;
 
-public class Wishes {
+public class WishesModel {
 
     private Long wishlistId;
     private Long userId;
@@ -8,12 +8,8 @@ public class Wishes {
     private Integer priority;
     private String timestamp; // You might want to use a proper data type for timestamp
 
-    // Default constructor
-    public Wishes() {
-    }
-
     // Constructor with fields
-    public Wishes(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
+    public WishesModel(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
         this.wishlistId = wishlistId;
         this.userId = userId;
         this.itemId = itemId;

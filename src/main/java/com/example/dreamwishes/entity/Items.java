@@ -1,6 +1,6 @@
     package com.example.dreamwishes.entity;
 
-    import com.example.dreamwishes.model.Wishes;
+    import com.example.dreamwishes.model.WishesModel;
 
     import javax.persistence.*;
     import java.util.List;
@@ -78,14 +78,17 @@
             this.category = category;
         }
 
-        @OneToMany(mappedBy = "item")
-        private List<Wishes> wishes;
 
-        public List<Wishes> getWishes() {
+       @OneToMany(mappedBy = "item")
+        private List<WishesModel> wishes;
+
+
+        public List<WishesModel> getWishes() {
             return wishes;
         }
 
-        public void setWishes(List<Wishes> wishes) {
+        public void setWishes(List<WishesModel> wishes) {
             this.wishes = wishes;
         }
+
     }

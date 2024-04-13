@@ -76,13 +76,13 @@ public class Users {
 
 
     @OneToMany(mappedBy = "user")
-    private List<Wishes> wishes;
+    private List<WishesEntity> wishes;
 
-    public List<Wishes> getWishes() {
+    public List<WishesEntity> getWishes() {
         return wishes;
     }
 
-    public void setWishes(List<Wishes> wishes) {
+    public void setWishes(List<WishesEntity> wishes) {
         this.wishes = wishes;
     }
 }

@@ -3,7 +3,6 @@ package com.example.dreamwishes.service;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +11,6 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Secured("ROLE_ADMIN")
-    public void adminMethod() {
-        // Method implementation
-    }
 
 
     private final UserRepository userRepository;

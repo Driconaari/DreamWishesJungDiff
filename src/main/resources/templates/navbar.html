@@ -8,22 +8,23 @@
 </head>
 <body>
 
-<!-- Navigation bar -->
-<div id="navbar">
+<!-- navbar.html -->
+<nav id="navbar">
     <a href="#" class="active">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
 
-    <!-- Conditionally display "Login" or "Logout" link -->
+    <!-- Conditionally display "Login", "Logout", or "Register" link -->
     <div th:if="${loggedIn}" class="login">
         <a href="/logout">Logout</a>
     </div>
     <div th:unless="${loggedIn}" class="login">
         <a href="/login">Login</a>
     </div>
-</div>
-
-
+    <div th:unless="${loggedIn}" class="login">
+        <a href="/register">Register</a>
+    </div>
+</nav>
 
 <!-- Page content -->
 <div style="height:1000px; background-color:#f2f2f2;padding:20px;">

@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="indexcss.css">
+    <link rel="stylesheet" href="styles.css">
     <title>DreamWishes</title>
 </head>
-
 <body>
 
 <!-- Navigation bar -->
-<div id="navbar">
+<nav id="navbar">
     <a href="#" class="active">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a href="login" class="login">Login</a>
-</div>
+
+    <!-- Conditionally display "Login", "Logout", or "Register" link -->
+    <div th:if="${loggedIn}" class="login">
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${loggedIn}" class="login">
+        <a href="/login">Login</a>
+    </div>
+    <div th:unless="${loggedIn}" class="login">
+        <a href="/register">Register</a>
+    </div>
+</nav>
 
 <header>
     <h1>DreamWishes</h1>
@@ -36,7 +46,6 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
 
 </div>
-
 
 <h2>Wish List:</h2>
 <ul>

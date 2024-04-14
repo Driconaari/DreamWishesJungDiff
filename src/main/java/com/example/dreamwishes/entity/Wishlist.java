@@ -79,6 +79,8 @@ public class Wishlist {
         this.timestamp = timestamp;
     }
 
-
+public Long getId() {
+        return this.wishlistId;
+    }
 
 }

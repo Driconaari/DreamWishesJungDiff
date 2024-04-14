@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-@EntityScan("com.example.dreamwishes.model") // Specify the base package for entity scanning
+@EntityScan("com.example.dreamwishes.entity")  // Specify the correct base package for entity scanning
 public class DreamWishesApplication {
 
     @Bean

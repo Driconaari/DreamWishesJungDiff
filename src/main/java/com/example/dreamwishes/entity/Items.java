@@ -1,13 +1,12 @@
     package com.example.dreamwishes.entity;
 
-    import com.example.dreamwishes.model.WishesModel;
-
     import javax.persistence.*;
     import java.util.List;
 
     @Entity
     @Table(name = "Items")
     public class Items {
+
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +22,30 @@
         @Column(name = "Price")
         private double price;
 
-        @Column(name = "Available")
-        private boolean available;
-
         @Column(name = "Category")
         private String category;
+
+        private boolean available;
+
+        @Column(name = "Available") // Ensure 'Available' matches the column name in your database
+
+        public boolean isAvailable() {
+            return available;
+        }
+
+        public void setAvailable(boolean available) {
+            this.available = available;
+        }
+
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
 
         // Getters and Setters
         public Long getItemId() {
@@ -61,7 +79,7 @@
         public void setPrice(double price) {
             this.price = price;
         }
-
+/*
         public boolean isAvailable() {
             return available;
         }
@@ -78,16 +96,15 @@
             this.category = category;
         }
 
-       @OneToMany(mappedBy = "item")
-        private List<WishesModel> wishes;
+ */
+@OneToMany(mappedBy = "item")
+private List<Wishlist> wishes;
 
-
-        public List<WishesModel> getWishes() {
+        public List<Wishlist> getWishes() {
             return wishes;
         }
 
-        public void setWishes(List<WishesModel> wishes) {
+        public void setWishes(List<Wishlist> wishes) {
             this.wishes = wishes;
         }
-
     }

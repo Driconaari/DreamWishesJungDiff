@@ -1,5 +1,7 @@
 package com.example.dreamwishes.model;
 
+import java.security.Timestamp;
+
 public class WishesModel {
 
     private Long wishlistId;
@@ -7,8 +9,14 @@ public class WishesModel {
     private Long itemId;
     private Integer priority;
     private String timestamp; // You might want to use a proper data type for timestamp
+    private String itemName;
+    private String description;
+    private double price;
 
 
+    // Default constructor
+    public  WishesModel(Long id, Object o, Long itemId, Integer priority, Timestamp timestamp) {
+    }
     // Constructor with fields
     public WishesModel(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
         this.wishlistId = wishlistId;
@@ -57,5 +65,28 @@ public class WishesModel {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemName() {
+        return this.itemName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return this.price;
     }
 }

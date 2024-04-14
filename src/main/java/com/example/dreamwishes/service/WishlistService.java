@@ -21,6 +21,7 @@ public class WishlistService {
         this.wishlistRepository = wishlistRepository;
     }
 
+
     public List<WishesModel> getWishesByUsername(String username) {
         // Fetch the user's wishlist by username
         List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
@@ -30,7 +31,13 @@ public class WishlistService {
         for (Wishlist wishlist : wishlists) {
             Items item = wishlist.getItem();
             if (item != null) {
-                wishes.addAll(item.getWishes());
+                // Convert each Wishlist to a WishesModel
+                WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp());
+                wishModel.setItemName(item.getItemName());
+                wishModel.setDescription(item.getDescription());
+                wishModel.setPrice(item.getPrice());
+                // Add the WishesModel to the list
+                wishes.add(wishModel);
             }
         }
 
@@ -92,12 +99,15 @@ public class WishlistService {
         if (wishlistOptional.isPresent()) {
             Wishlist wishlist = wishlistOptional.get();
             Items item = wishlist.getItem();
-            // Assuming there's a method to retrieve wishes from an item
-            return item.getWishes();
+            // Create a WishesModel object using the information from the Wishlist and Items objects
+            WishesModel wishModel = new WishesModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp().toString());
+            wishModel.setItemName(item.getItemName());
+            wishModel.setDescription(item.getDescription());
+            wishModel.setPrice(item.getPrice());
+            // Return a list containing the WishesModel object
+            return Collections.singletonList(wishModel);
         } else {
             return Collections.emptyList(); // Wishlist not found, return an empty list
         }
     }
-
-
 }

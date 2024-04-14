@@ -59,11 +59,11 @@ public class WishesController {
     }
 
     //show attractions, I saved the old version
-    @GetMapping("/")
+    @GetMapping("/homepage")
     public String showHomePage(Model model) {
         List<Wishes> attractions = dreamWishesService.getAllWishes();
         model.addAttribute("attractions", attractions);
-        return "index"; // Assuming "index" is the name of your Thymeleaf template for the homepage
+        return "homepage"; // Assuming "index" is the name of your Thymeleaf template for the homepage
     }
 
     @GetMapping("/wishes")

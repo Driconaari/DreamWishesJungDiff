@@ -78,7 +78,6 @@
             this.category = category;
         }
 
-
        @OneToMany(mappedBy = "item")
         private List<WishesModel> wishes;
 

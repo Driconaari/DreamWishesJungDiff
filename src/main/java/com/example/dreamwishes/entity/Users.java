@@ -3,7 +3,6 @@ package com.example.dreamwishes.entity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -74,7 +73,7 @@ public class Users {
         return userID;
     }
 
-
+/*
     @OneToMany(mappedBy = "user")
     private List<WishesEntity> wishes;
 
@@ -85,5 +84,7 @@ public class Users {
     public void setWishes(List<WishesEntity> wishes) {
         this.wishes = wishes;
     }
+
+ */
 }
 

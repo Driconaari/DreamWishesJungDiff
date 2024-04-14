@@ -1,21 +1,15 @@
 package com.example.dreamwishes.controller;
 
-import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 public class ProfileController {
 
     @Autowired
     private UserService userService;
-
+/*
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
         String username = principal.getName();
@@ -29,4 +23,6 @@ public class ProfileController {
             return "error";
         }
     }
+
+ */
 }

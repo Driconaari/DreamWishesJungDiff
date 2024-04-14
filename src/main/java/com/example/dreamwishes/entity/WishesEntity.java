@@ -1,5 +1,5 @@
 package com.example.dreamwishes.entity;
-
+/*
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -85,3 +85,5 @@ public class WishesEntity {
         this.timestamp = timestamp;
     }
 }
+
+ */

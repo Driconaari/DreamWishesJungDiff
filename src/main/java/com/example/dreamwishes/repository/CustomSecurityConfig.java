@@ -1,5 +1,5 @@
 package com.example.dreamwishes.repository;
-
+/*
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.SecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,3 +18,5 @@ public class CustomSecurityConfig implements SecurityConfigurer<DefaultSecurityF
         // Custom security configuration
     }
 }
+
+ */

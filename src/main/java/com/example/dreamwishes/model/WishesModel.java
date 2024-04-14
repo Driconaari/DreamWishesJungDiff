@@ -8,6 +8,7 @@ public class WishesModel {
     private Integer priority;
     private String timestamp; // You might want to use a proper data type for timestamp
 
+
     // Constructor with fields
     public WishesModel(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
         this.wishlistId = wishlistId;

@@ -46,7 +46,7 @@ public String login(@RequestParam("username") String username,
     if (userService.login(username, password)) {
         session.setAttribute("loggedIn", true);
         session.setAttribute("userId", userService.getUserId(username).orElse(null));
-        return "redirect:/index"; // Redirect to index page after successful login
+        return "redirect:/"; // Redirect to index page after successful login
     } else {
         model.addAttribute("error", "Invalid username or password");
         return "login";

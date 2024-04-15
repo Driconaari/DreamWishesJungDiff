@@ -12,8 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+
 @EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
@@ -27,9 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .anyRequest().permitAll();
+                /*
+                .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/login", "/register","/").permitAll()
+                .antMatchers("/user/**", "/login", "/register", "/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -39,10 +45,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
+                 */
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+
 }

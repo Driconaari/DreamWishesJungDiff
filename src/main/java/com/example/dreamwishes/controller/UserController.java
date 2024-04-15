@@ -1,6 +1,5 @@
 package com.example.dreamwishes.controller;
 
-import com.example.dreamwishes.dto.UserDTO;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.repository.WishlistRepository;
@@ -85,17 +84,14 @@ public String showUserWishes(HttpSession session, Model model) {
         return "register";
     }
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute UserDTO userDTO) {
-        Users user = new Users();
-        user.setUsername(userDTO.getUsername());
-        user.setEmail(userDTO.getEmail());
-        // set other fields as needed
-        logger.info("Attempting to register user: {}", user.getUsername());
-        userService.createUser(user);
-        logger.info("Registered user: {}", user.getUsername());
-        return "redirect:/login";
-    }
+   @PostMapping("/register")
+public String register(@ModelAttribute Users user) {
+    // set other fields as needed
+    logger.info("Attempting to register user: {}", user.getUsername());
+    userService.createUser(user);
+    logger.info("Registered user: {}", user.getUsername());
+    return "redirect:/login";
+}
 
     @GetMapping("/profile")
     public String showUserProfile(HttpSession session, Model model) {

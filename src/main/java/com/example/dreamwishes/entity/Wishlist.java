@@ -1,7 +1,7 @@
 package com.example.dreamwishes.entity;
 
 import javax.persistence.*;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -25,10 +25,7 @@ public class Wishlist {
     private Integer priority;
 
     @Column(name = "Timestamp", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp timestamp;
-
-    // Constructors, getters, and setters
-    // You can generate these using your IDE or manually write them
+    private java.sql.Timestamp timestamp;
 
     public Wishlist() {
     }
@@ -79,7 +76,6 @@ public class Wishlist {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-
 public Long getId() {
         return this.wishlistId;
     }

@@ -3,6 +3,7 @@ package com.example.dreamwishes.service;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,16 +15,19 @@ public class UserService {
 
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Create operation
     public Users createUser(Users user) {
-        return userRepository.save(user);
-    }
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    return userRepository.save(user);
+}
 
     // Read operation
     public List<Users> getAllUsers() {
@@ -35,26 +39,42 @@ public class UserService {
     }
 
     // Update operation
-    public Users updateUser(Long id, Users updatedUser) {
-        Optional<Users> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
-            Users user = userOptional.get();
-            user.setUsername(updatedUser.getUsername());
-            user.setEmail(updatedUser.getEmail());
-            user.setPassword(updatedUser.getPassword());
-            // Set other properties as needed
-            return userRepository.save(user);
-        } else {
-            // Handle user not found
-            return null;
-        }
+   public Users updateUser(Long id, Users updatedUser) {
+    Optional<Users> userOptional = userRepository.findById(id);
+    if (userOptional.isPresent()) {
+        Users user = userOptional.get();
+        user.setUsername(updatedUser.getUsername());
+        user.setEmail(updatedUser.getEmail());
+        user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        // Set other properties as needed
+        return userRepository.save(user);
+    } else {
+        // Handle user not found
+        return null;
     }
+}
+
+ public boolean login(String username, String password) {
+    // Find user by username
+    Users user = userRepository.findByUsername(username);
+
+    // Check if user exists and if the password matches
+    if (user != null) {
+        return passwordEncoder.matches(password, user.getPassword());
+    } else {
+        // Handle user not found
+        return false;
+    }
+}
 
     // Delete operation
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
+
+    //old login method
+/*
     public boolean login(String username, String password) {
         // Find user by username
         Users user = userRepository.findByUsername(username);
@@ -63,11 +83,29 @@ public class UserService {
         return user != null && user.getPassword().equals(password);
     }
 
-    public Optional<Users> getUserId(String username) {
+ */
+
+    public Optional<Long> getUserId(String username) {
+    // Retrieve the user by username
+    Users user = userRepository.findByUsername(username);
+
+    // If the user exists, return their ID
+    if (user != null) {
+        return Optional.of(user.getUserID());
+    } else {
+        // If the user doesn't exist, return an empty Optional
+        return Optional.empty();
+    }
+}
+
+//old get user
+    /*public Optional<Users> getUserId(String username) {
         // Your logic to retrieve the user by username
         Users user = userRepository.findByUsername(username);
         return Optional.ofNullable(user);
     }
+
+     */
 /*
     // Retrieve wishes for the logged-in user
     public List<WishesEntity> getLoggedInUserWishes() {

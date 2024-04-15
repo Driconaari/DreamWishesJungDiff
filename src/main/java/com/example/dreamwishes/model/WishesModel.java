@@ -1,6 +1,6 @@
 package com.example.dreamwishes.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class WishesModel {
 
@@ -8,22 +8,30 @@ public class WishesModel {
     private Long userId;
     private Long itemId;
     private Integer priority;
-    private String timestamp; // You might want to use a proper data type for timestamp
+    private Timestamp timestamp;
     private String itemName;
     private String description;
     private double price;
 
 
-    // Default constructor
-    public  WishesModel(Long id, Object o, Long itemId, Integer priority, Timestamp timestamp) {
+    // New constructor
+    public WishesModel(Long wishlistId, Object userId, Long itemId, Integer priority, Timestamp timestamp) {
+        // You'll need to handle the conversion from Object to Long for the userId parameter
+        this.wishlistId = wishlistId;
+        this.userId = (Long) userId;
+        this.itemId = itemId;
+        this.priority = priority;
+        this.timestamp = timestamp;
     }
-    // Constructor with fields
-    public WishesModel(Long wishlistId, Long userId, Long itemId, Integer priority, String timestamp) {
+
+    // New constructor
+    public WishesModel(Long wishlistId, Object userId, Long itemId, Integer priority, java.security.Timestamp timestamp) {
+        // You'll need to handle the conversion from String to Timestamp for the timestamp parameter
         this.wishlistId = wishlistId;
         this.userId = userId;
         this.itemId = itemId;
         this.priority = priority;
-        this.timestamp = timestamp;
+        this.timestamp = Timestamp.valueOf(timestamp);
     }
 
     // Getters and setters
@@ -59,13 +67,13 @@ public class WishesModel {
         this.priority = priority;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
+public Timestamp getTimestamp() {
+    return timestamp;
+}
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
+}
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }

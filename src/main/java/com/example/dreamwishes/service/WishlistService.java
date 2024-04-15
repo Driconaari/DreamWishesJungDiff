@@ -22,28 +22,26 @@ public class WishlistService {
     }
 
 
-    public List<WishesModel> getWishesByUsername(String username) {
-        // Fetch the user's wishlist by username
-        List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
-
-        // Extract wishes from items in wishlists
-        List<WishesModel> wishes = new ArrayList<>();
-        for (Wishlist wishlist : wishlists) {
-            Items item = wishlist.getItem();
-            if (item != null) {
-                // Convert each Wishlist to a WishesModel
-                WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp());
-                wishModel.setItemName(item.getItemName());
-                wishModel.setDescription(item.getDescription());
-                wishModel.setPrice(item.getPrice());
-                // Add the WishesModel to the list
-                wishes.add(wishModel);
-            }
+   public List<WishesModel> getWishesByUsername(String username) {
+    // Fetch the user's wishlist by username
+    List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
+    // Extract wishes from items in wishlists
+    List<WishesModel> wishes = new ArrayList<>();
+    for (Wishlist wishlist : wishlists) {
+        Items item = wishlist.getItem();
+        if (item != null) {
+            // Convert each Wishlist to a WishesModel
+            WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp());
+            wishModel.setItemName(item.getItemName());
+            wishModel.setDescription(item.getDescription());
+            wishModel.setPrice(item.getPrice());
+            // Add the WishesModel to the list
+            wishes.add(wishModel);
         }
-
-        return wishes;
     }
 
+    return wishes;
+}
 
     // Original methods from your old WishlistService class
 
@@ -94,20 +92,18 @@ public class WishlistService {
         wishlistRepository.deleteById(wishlistId);
     }
 
-    public List<WishesModel> getWishesByWishlistId(Long wishlistId) {
-        Optional<Wishlist> wishlistOptional = wishlistRepository.findById(wishlistId);
-        if (wishlistOptional.isPresent()) {
-            Wishlist wishlist = wishlistOptional.get();
-            Items item = wishlist.getItem();
-            // Create a WishesModel object using the information from the Wishlist and Items objects
-            WishesModel wishModel = new WishesModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp().toString());
-            wishModel.setItemName(item.getItemName());
-            wishModel.setDescription(item.getDescription());
-            wishModel.setPrice(item.getPrice());
-            // Return a list containing the WishesModel object
-            return Collections.singletonList(wishModel);
-        } else {
-            return Collections.emptyList(); // Wishlist not found, return an empty list
-        }
+   public List<WishesModel> getWishesByWishlistId(Long wishlistId) {
+    Optional<Wishlist> wishlistOptional = wishlistRepository.findById(wishlistId);
+    if (wishlistOptional.isPresent()) {
+        Wishlist wishlist = wishlistOptional.get();
+        Items item = wishlist.getItem();
+        WishesModel wishModel = new WishesModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), wishlist.getTimestamp());
+        wishModel.setItemName(item.getItemName());
+        wishModel.setDescription(item.getDescription());
+        wishModel.setPrice(item.getPrice());
+        return Collections.singletonList(wishModel);
+    } else {
+        return Collections.emptyList();
     }
+}
 }

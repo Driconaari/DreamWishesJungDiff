@@ -18,7 +18,7 @@ import java.util.List;
 
 // WishlistController.java
 @Controller
-@RequestMapping("/api/wishlists")
+@RequestMapping("/wishlists")
 public class WishlistController {
 
     private final WishlistService wishlistService;

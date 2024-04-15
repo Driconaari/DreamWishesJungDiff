@@ -85,17 +85,6 @@ public class UserService {
     }
 
 
-    //old login method
-/*
-    public boolean login(String username, String password) {
-        // Find user by username
-        Users user = userRepository.findByUsername(username);
-
-        // Check if user exists and if the password matches
-        return user != null && user.getPassword().equals(password);
-    }
-
- */
 
     public Optional<Long> getUserId(String username) {
     // Retrieve the user by username

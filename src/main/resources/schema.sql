@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS wishlist (
+    WishlistID INT PRIMARY KEY,
+    UserID INT,
+    ItemID INT,
+    Priority INT,
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS item (
+    ItemID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Description TEXT,
+    Price DECIMAL(10, 2),
+    ImageURL VARCHAR(255),
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS user (
+    UserID INT PRIMARY KEY,
+    Username VARCHAR(255),
+    Password VARCHAR(255),
+    Email VARCHAR(255),
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS session (
+    SessionID INT PRIMARY KEY,
+    UserID INT,
+    Token VARCHAR(255),
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+

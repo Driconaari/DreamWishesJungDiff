@@ -171,6 +171,15 @@ public class WishesController {
         wishesRepository.updateWishList(updatedAttraction);
         return "redirect:/attractions"; // Redirect to the attraction list page after updating
     }
+    @GetMapping("/homepage")
+    public String shownewHomePage(Model model) {
+        List<Wishes> attractions = dreamWishesService.getAllWishes();
+        model.addAttribute("attractions", attractions);
+        return "homepage"; // Redirect to homepage.html
+    }
+    @GetMapping("/login1")
+    public String showLoginPage(Model model) {
+        return "login";
+    }
 
-
-}
+ }

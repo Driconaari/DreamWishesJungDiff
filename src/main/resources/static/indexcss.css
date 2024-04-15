@@ -1,153 +1,42 @@
-/* indexcss.css file
-
-/* Reset default margin and padding */
-body, h1, h2, p, ul {
-    margin: 0;
-    padding: 0;
-}
-
-/* Set global font styles */
-body {
-    font-family: Arial, sans-serif;
-
-}
-
-
-.column01,
-.column02,
-.column03,
-.column04 {
-    float: left;
-    width: 30%;
-    padding: 0 10px;
-    margin-bottom: 70px;
-    margin-left: 170px;
-    transform: translate(1px, 1px);
-}
-
-.column02,
-.column04 {
-    float: right;
-    margin-left: 0;
-    margin-right: 170px;
-}
-
-.row {
-    margin: 0 -5px;
-    margin-top: 10px; /* Adjust this value to match the height of your navbar */
-
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.card01,
-.card02,
-.card03,
-.card04 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #f0eeee;
-}
-
-img.background {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    width: 100%;
+body, html {
     height: 100%;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-    }
-}
-
-/* Section styles */
-section {
-    padding: 20px;
-}
-
-/* Welcome message styles */
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-
-
-/* Image container styles */
-.image-container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    height: 100%;
 }
 
-.small-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 10px;
-    animation: floatAnimation 1s ease infinite alternate; /* Animation applied */
+.column01 {
+    width: 1500%; /* Adjust the width as needed /
+    padding: 2000px; / Adjust the padding as needed /
 }
 
-@keyframes floatAnimation {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-15px);
-    }
+.card01 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 30px; / Adjust the padding as needed /
+    text-align: center;
+    background-color: #f0eeee;
 }
-
-/* Wish List styles */
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-
-
-li {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-
 
 a:hover {
     text-decoration: underline;
 }
 
 button {
-    position: relative;
-    margin: 0;
+    margin: 0 auto; / Center horizontally /
+    display: block; / Ensure button takes full width */
     padding: 0.8em 1em;
     outline: none;
     text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     border: none;
     text-transform: uppercase;
-    background-color: #0a59af;
+    background-color: #af0a0a;
     border-radius: 10px;
     color: #fff;
     font-weight: 300;
@@ -161,82 +50,29 @@ button {
 button:hover {
     animation: sh0 0.5s ease-in-out both;
 }
-
-/* Style the counter cards */
-.card01,
-.card02,
-.card03,
-.card04 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #f0eeee;
-    position: relative; /* Added position relative for button centering */
+.big-button {
+    font-size: 40px;
+    padding: 40px;
+    width: 400px;
+    text-align: center; /* Center the text */
+    background-color: #0a59af; /* Set a background color */
+    color: white; /* Set the text color */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Change the cursor when hovering over the button */
+    border-radius: 50px;
 }
 
-/* Center the buttons */
-.card01 button,
-.card02 button,
-.card03 button,
-.card04 button {
-    margin: 0 auto; /* Center horizontally */
-    display: block; /* Ensure button takes full width */
+.big-button:hover {
+    background-color: #45a049; /* Change the background color when hovering over the button */
 }
-
-
-@keyframes sh0 {
-    0% {
-        transform: rotate(0deg) translate3d(0, 0, 0);
-    }
-
-    25% {
-        transform: rotate(7deg) translate3d(0, 0, 0);
-    }
-
-    50% {
-        transform: rotate(-7deg) translate3d(0, 0, 0);
-    }
-
-    75% {
-        transform: rotate(1deg) translate3d(0, 0, 0);
-    }
-
-    100% {
-        transform: rotate(0deg) translate3d(0, 0, 0);
-    }
-}
-
-button:hover span {
-    animation: storm 0.7s ease-in-out both;
-    animation-delay: 0.06s;
-}
-
-button::before,
-button::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #fff;
-    opacity: 0;
-    transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
-    z-index: -1;
-    transform: translate(100%, -25%) translate3d(0, 0, 0);
-}
-
-button:hover::before,
-button:hover::after {
-    opacity: 0.15;
-    transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
-}
-
-button:hover::before {
-    transform: translate3d(50%, 0, 0) scale(0.9);
-}
-
-button:hover::after {
-    transform: translate(50%, 0) scale(1.1);
-}
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* This will make the container take up the full height of the viewport */
+}body {
+    /* background-image: url(background.jpg');
+     background-repeat: no-repeat;
+     background-size: cover;
+     background.jpg */
+ }

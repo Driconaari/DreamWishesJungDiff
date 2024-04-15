@@ -8,15 +8,15 @@
   <title>DreamWishes</title>
 </head>
 <body>
+</body>
+<div th:insert="~{navbar :: navbar}"></div>
 
 
 
 <ul>
   <li ><a href="/"><img src="/images/cloudIcon-1.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
-  <li style="float: right"><a href="/login">Login</a></li>
   <header>
-    <h1>DreamWishes</h1>
-    font
+
   </header>
 </ul>
 
@@ -55,11 +55,11 @@
 <div class="content">
 
 </div>
-</div>
+</html>
 
 <section>
   <div>
-    <h2>Welcome to your Wish list!</h2>
+    <h2>Welcome to DreamWishes!</h2>
     <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your favorite brands or anything else you desire!</p>
   </div>
 </section>
@@ -70,7 +70,7 @@
   <div class="container">
     <div class="column01">
       <div class="card01">
-        <h3><button class="button" onclick="location.href='/wishes/add'">Add a Wish</button></h3>
+        <h3><button class="button" onclick="location.href='/wishlist/add'">Create a Wish</button></h3>
         <p>Click here to add a Wish</p>
         <p>           </p>
         <table></table>
@@ -80,29 +80,18 @@
 
   <div class="column02">
     <div class="card02">
-      <h3><button class="button" onclick="location.href='/wishes'">Go to Wish List</button></h3>
+      <h3><button class="button" onclick="location.href='/wishlist'">Your Wish List</button></h3>
       <p>Click here to see your Wishlist!</p>
       <p>           </p>
     </div>
   </div>
-  <div class="column03">
-    <div class="card03">
-      <h3><button class="button" onclick="location.href='/wishes/edit/{name}'">Edit Wish List</button></h3>
-      <p>Click here to edit your Wishlist!</p>
-      <p>           </p>
-    </div>
-  </div>
-  <div class="column04">
-    <div class="card04">
-      <h3><button class="button" onclick="location.href='/wishes/save'">Save Wish List</button></h3>
-      <p>Click here to save your Wishlist!</p>
-      <p>           </p>
-    </div>
-  </div>
 </div>
-
-
-<h2>Wish List:</h2>
+  <div class="card03">
+    <h3><button class="logout-button" onclick="location.href='/login'">Log out</button></h3>
+    <p>Click here to add a Wish</p>
+    <p>           </p>
+    <table></table>
+  </div>
 <ul>
   <!-- Use Thymeleaf to loop through the list of tourist attractions -->
   <li th:each="attraction : ${attractions}">
@@ -115,5 +104,5 @@
 
 
 <footer th:insert="~{footer :: footer}"></footer>
-</body>
-</html>
+<body>
+

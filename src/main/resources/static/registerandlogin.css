@@ -57,12 +57,9 @@ button:hover {
     text-align: center; /* Center the text */
     background-color: #0a59af; /* Set a background color */
     color: white; /* Set the text color */
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     border: none; /* Remove the border */
     cursor: pointer; /* Change the cursor when hovering over the button */
     border-radius: 50px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5); /* Add this line */
-
 }
 
 .big-button:hover {
@@ -74,8 +71,8 @@ button:hover {
     align-items: center;
     height: 60vh; /* This will make the container take up the full height of the viewport */
 }body {
-    /* background-image: url(background.jpg');
-     background-repeat: no-repeat;
-     background-size: cover;
-     background.jpg */
+     /* background-image: url(background.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background.jpg */
  }

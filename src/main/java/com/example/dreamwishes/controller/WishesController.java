@@ -45,7 +45,7 @@ public class WishesController {
     }
 
 
-    @GetMapping("/wishes/{name}/tags")
+    @GetMapping("/wishlist/{name}/tags")
     public String getAttractionTags(@PathVariable String name, Model model) {
         Optional<Wishes> attractionOptional = dreamWishesService.getAttractionByName(name);
         if (attractionOptional.isPresent()) {
@@ -66,21 +66,21 @@ public class WishesController {
         return "index"; // Assuming "index" is the name of your Thymeleaf template for the homepage
     }
 
-    @GetMapping("/wishes")
+    @GetMapping("/wishlist")
     public String getAllWishes(Model model) {
         List<Wishes> attractions = dreamWishesService.getAllWishes();
         model.addAttribute("attractions", attractions);
-        return "WishList"; // Assuming "attractionList" is the name of your Thymeleaf template
+        return "wishlist"; // Assuming "attractionList" is the name of your Thymeleaf template
     }
 
-    @PostMapping("/wishes/save")
+    @PostMapping("/wishlist/save")
     public String saveWish(@ModelAttribute Wishes attraction) {
         dreamWishesService.saveAttraction(attraction);
         return "redirect:/";
     }
 
     //new add attraction
-    @GetMapping("/wishes/add")
+    @GetMapping("/wishlist/add")
     public String showAddWishForm(Model model) {
         // Create a new empty attraction
         Wishes newAttraction = new Wishes();
@@ -105,7 +105,7 @@ public class WishesController {
     }
 
 
-    @PostMapping("/wishes/add")
+    @PostMapping("/wishlist/add")
     public String addWish(@ModelAttribute("attraction") Wishes attraction) {
         // Assuming you have setters in TouristAttraction for all fields
         // Set other fields as needed before saving
@@ -122,7 +122,7 @@ public class WishesController {
         return "redirect:/attractions";
     }
 
-    @GetMapping("/wishes/edit/{name}")
+    @GetMapping("/wishlist/edit/{name}")
     public String showEditWishFormByName(@PathVariable String name, Model model) {
         Optional<Wishes> attractionOptional = dreamWishesService.getAttractionByName(name);
         if (attractionOptional.isPresent()) {
@@ -150,7 +150,7 @@ public class WishesController {
     }
 
 
-    @DeleteMapping("/wishes/{name}/delete")
+    @DeleteMapping("/wishlist/{name}/delete")
     public String deleteAttraction(@PathVariable String name) {
         dreamWishesService.deleteAttractionByName(name);
         //return "Attraction with name " + name + " deleted successfully.";
@@ -166,7 +166,7 @@ public class WishesController {
     }
 
 
-    @PostMapping("/wishes/update")
+    @PostMapping("/wishlist/update")
     public String updateAttraction(@ModelAttribute Wishes updatedAttraction) {
         wishesRepository.updateWishList(updatedAttraction);
         return "redirect:/attractions"; // Redirect to the attraction list page after updating
@@ -181,5 +181,37 @@ public class WishesController {
     public String showLoginPage(Model model) {
         return "login";
     }
+
+    @GetMapping("/registerandlogin")
+    public String showCreateAndRegisterPage(Model model) {
+        return "registerandlogin";
+    }
+
+    @GetMapping("/createaccount")
+    public String showCreateAccountPage(Model model) {
+        return "createaccount";
+    }
+
+//i dunno about this and down and the wish service
+    @RequestMapping("/wishlist")
+public class WishController {
+
+    private WishService wishService;
+
+    // Other methods...
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Wishes wish = wishService.findById(id);
+        model.addAttribute("wish", wish);
+        return "editWish";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteWish(@PathVariable("id") Long id) {
+        wishService.deleteById(id);
+        return "redirect:/wishes";
+    }
+}
 
  }

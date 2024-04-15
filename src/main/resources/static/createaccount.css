@@ -14,6 +14,16 @@ label {
     color: #ffffff;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
-
+h2 {
+    color: #ffffff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 50px;
+    color: #6cb5f6;
+    text-shadow: 2px 2px 4px #000000;
+}
 
 

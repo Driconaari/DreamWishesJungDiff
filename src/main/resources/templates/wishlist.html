@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="indexcss.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+
+    <title>Your Wishlist</title>
+</head>
+<body>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+
+<ul>
+    <header>
+        <h1>DreamWishes</h1>
+    </header>
+</ul>
+
+<h1>Your Wishlist</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Brand of Wish</th>
+        <th>Price of Wish</th>
+        <th>Tags</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <body>
+    <tr th:each="wish : ${wishes}">
+        <td th:text="${wish.name}">Name</td>
+        <td th:text="${wish.description}">Description</td>
+        <td th:text="${wish.brand}">Brand</td>
+        <td th:text="${wish.price}">Price</td>
+        <td th:text="${wish.tags}">Tags</td>
+        <td>
+            <!-- Button to edit the wish -->
+            <form th:action="@{/wishes/edit/{id}(id=${wish.id})}" method="get">
+                <button type="submit">Edit</button>
+            </form>
+            <!-- Button to delete the wish -->
+            <form th:action="@{'/wishes/' + ${wish.id} + '/delete'}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </body>
+</table>
+</body>
+<footer th:insert="~{footer :: footer}"></footer>

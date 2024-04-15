@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="registerandlogin.css">
+  <link rel="stylesheet" type="text/css" href="navbar.css">
+  <title>DreamWishes</title>
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+
+
+<ul>
+  <header>
+  </header>
+</ul>
+
+<div class="center-container">
+  <a href="/createaccount">
+    <button class="big-button" onclick="location.href='/login.html'">Create a Account!</button>
+  </a>
+  <a href="/login">
+    <button class="big-button">Login</button>
+  </a>
+
+  <style>
+    body {
+
+
+      /* existing styles */
+      background-image: url('/images/clouds-index.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</div>
+</body>
+</html>
+

@@ -14,25 +14,18 @@ public class WishesModel {
     private double price;
 
 
-    // New constructor
-    public WishesModel(Long wishlistId, Object userId, Long itemId, Integer priority, Timestamp timestamp) {
-        // You'll need to handle the conversion from Object to Long for the userId parameter
-        this.wishlistId = wishlistId;
-        this.userId = (Long) userId;
-        this.itemId = itemId;
-        this.priority = priority;
-        this.timestamp = timestamp;
-    }
 
-    // New constructor
-    public WishesModel(Long wishlistId, Object userId, Long itemId, Integer priority, java.security.Timestamp timestamp) {
-        // You'll need to handle the conversion from String to Timestamp for the timestamp parameter
-        this.wishlistId = wishlistId;
-        this.userId = userId;
-        this.itemId = itemId;
-        this.priority = priority;
-        this.timestamp = Timestamp.valueOf(timestamp);
+   public WishesModel(Long wishlistId, Object userId, Long itemId, Integer priority, java.sql.Timestamp timestamp) {
+    this.wishlistId = wishlistId;
+    if (userId instanceof Long) {
+        this.userId = (Long) userId;
+    } else {
+        throw new IllegalArgumentException("userId must be of type Long");
     }
+    this.itemId = itemId;
+    this.priority = priority;
+    this.timestamp = timestamp;
+}
 
     // Getters and setters
     public Long getWishlistId() {

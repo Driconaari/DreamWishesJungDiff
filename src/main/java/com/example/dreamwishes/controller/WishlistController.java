@@ -1,17 +1,17 @@
 package com.example.dreamwishes.controller;
 
 //import ch.qos.logback.core.model.Model;
-import org.springframework.ui.Model;
 
 import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Wishlist;
+import com.example.dreamwishes.model.WishesModel;
 import com.example.dreamwishes.service.WishlistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
 
 import java.net.URI;
 import java.util.List;
@@ -23,9 +23,20 @@ public class WishlistController {
 
     private final WishlistService wishlistService;
 
+    @Autowired
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
     }
+
+
+    @GetMapping("/{wishlistId}/wishes")
+public ResponseEntity<List<WishesModel>> getWishesByWishlistId(@PathVariable Long wishlistId) {
+    List<WishesModel> wishes = wishlistService.getWishesByWishlistId(wishlistId);
+    if (wishes.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(wishes);
+}
 
     @GetMapping("/wishlist")
     public String getWishlistPage(Model model) {

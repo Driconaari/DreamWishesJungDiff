@@ -1,0 +1,42 @@
+/* navbar.css file
+
+/* Navbar styles */
+ul {
+    width: 100%;
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #a9cdf3;
+    z-index: 999;
+
+
+}
+
+li {
+    float: left;
+}
+
+
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    text-decoration: none;
+    margin-top: auto;
+
+}
+header {
+    background-color: #a9cdf3;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    margin-right: 90px;
+    margin-top: 15px;
+    z-index: 999;
+}
+
+

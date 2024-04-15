@@ -1,22 +1,39 @@
-/* stylesForAddAttraction.css file
+/* Reset default margin and padding */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
 
+/* Set global font styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Form container styles */
 .attraction-form {
     max-width: 500px;
-    margin: auto;
+    margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Form group styles */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding-left: 100px;
 }
 
+/* Label styles */
 label {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
+/* Input, textarea, and select styles */
 input[type="text"],
 textarea,
 select {
@@ -26,6 +43,7 @@ select {
     border-radius: 3px;
 }
 
+/* Button styles */
 button[type="submit"] {
     display: block;
     width: 100%;

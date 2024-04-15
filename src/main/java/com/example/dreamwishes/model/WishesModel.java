@@ -27,6 +27,8 @@ public class WishesModel {
     this.timestamp = timestamp;
 }
 
+
+
     // Getters and setters
     public Long getWishlistId() {
         return wishlistId;

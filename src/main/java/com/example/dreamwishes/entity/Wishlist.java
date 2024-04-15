@@ -2,6 +2,7 @@ package com.example.dreamwishes.entity;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "wishlist")
@@ -71,7 +72,7 @@ public class Wishlist {
         this.priority = priority;
     }
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 

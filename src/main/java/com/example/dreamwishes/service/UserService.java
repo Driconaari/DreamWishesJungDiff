@@ -65,18 +65,19 @@ public class UserService {
     }
 }
 
- public boolean login(String username, String password) {
-    // Find user by username
-    Users user = userRepository.findByUsername(username);
 
-    // Check if user exists and if the password matches
-    if (user != null) {
-        return passwordEncoder.matches(password, user.getPassword());
-    } else {
-        // Handle user not found
-        return false;
+    public boolean login(String username, String password) {
+        // Find user by username
+        Users user = userRepository.findByUsername(username);
+
+        // Check if user exists and if the password matches
+        if (user != null) {
+            return passwordEncoder.matches(password, user.getPassword());
+        } else {
+            // Handle user not found
+            return false;
+        }
     }
-}
 
     // Delete operation
     public void deleteUser(Long id) {

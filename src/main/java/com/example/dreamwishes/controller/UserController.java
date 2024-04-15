@@ -36,21 +36,21 @@ public class UserController {
         return "login";
     }
 
-   @PostMapping("/login")
-public String login(@RequestParam("username") String username,
-                    @RequestParam("password") String password,
-                    HttpSession session,
-                    Model model) {
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        HttpSession session,
+                        Model model) {
 
-    if (userService.login(username, password)) {
-        session.setAttribute("loggedIn", true);
-        session.setAttribute("userId", userService.getUserId(username).orElse(null));
-        return "redirect:/"; // Redirect to index page after successful login
-    } else {
-        model.addAttribute("error", "Invalid username or password");
-        return "login";
+        if (userService.login(username, password)) {
+            session.setAttribute("loggedIn", true);
+            session.setAttribute("userId", userService.getUserId(username).orElse(null));
+            return "redirect:/"; // Redirect to index page after successful login
+        } else {
+            model.addAttribute("error", "Invalid username or password");
+            return "login";
+        }
     }
-}
 @GetMapping("/wishes")
 public String showUserWishes(HttpSession session, Model model) {
     Long userId = (Long) session.getAttribute("userId");

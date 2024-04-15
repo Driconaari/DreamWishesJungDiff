@@ -1,15 +1,18 @@
 /* homepage.css file
 
-/* Reset default margin and padding */
-body, h1, h2, p, ul {
-    margin: 0;
-    padding: 0;
-}
 
 /* Set global font styles */
 body {
     font-family: Arial, sans-serif;
 
+}
+
+h1{
+    font-family: "Audiowide", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: #000000;
+    padding-left: 5px;
 }
 
 

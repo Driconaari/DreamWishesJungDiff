@@ -1,0 +1,10 @@
+.centered-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.centered-button {
+    margin: 0 50px;
+}

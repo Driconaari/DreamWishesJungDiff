@@ -5,52 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="indexcss.css">
     <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <title>DreamWishes</title>
 </head>
 <body>
 
+
+
 <ul>
-    <li ><a href="/homepage"><img src="/images/cloudIcon-1.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
-    <li style="float: right"><a href="/login">Login</a></li>
-    <header>
-        <h1>DreamWishes</h1>
-    </header>
+    <li ><a href="/"><img src="/images/cloud-icon.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
+    <li style="float: right"><a href="/login"><img src="/images/lock-icon.png" alt="Home" style="width: 25px; height: 25px;"/></a></li>
+
+    <h1>DreamWishes</h1>
+
 </ul>
 <div class="center-container">
     <a href="/homepage">
         <button class="big-button">Create a Wish!</button>
     </a>
+</div>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/clouds-index.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        z-index: -1; /* Ensure the background is behind other content */
+    }
+
+    /* Additional styling for content */
+    .content {
+        position: relative;
+        z-index: 1; /* Ensure the content is on top of the background */
+    }
+</style>
 
 
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/images/dreaming_1.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            -webkit-filter: blur(5px);
-            filter: blur(5px);
-            z-index: -1; /* Ensure the background is behind other content */
-        }
-
-        /* Additional styling for content */
-        .content {
-            position: relative;
-            z-index: 1; /* Ensure the content is on top of the background */
-        }
-    </style>
+<div class="background-container"></div>
+<div class="content">
 
 </div>
+
 </body>
 </html>

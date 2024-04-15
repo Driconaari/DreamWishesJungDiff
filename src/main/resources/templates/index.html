@@ -11,9 +11,9 @@
 
 <!-- Navigation bar -->
 <nav id="navbar">
-    <a href="#" class="active">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="/" class="active">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
 
     <!-- Conditionally display "Login", "Logout", or "Register" link -->
     <div th:if="${loggedIn}" class="login">
@@ -45,6 +45,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s" class="small-image">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
 
+
 </div>
 
 <h2>Wish List:</h2>
@@ -56,17 +57,9 @@
 </ul>
 <ul>
     <li><a href="/wishes/add">Add a Wish</a></li>
-    <li><a href="/api/wishlists">Go to Wish List</a></li>
+    <li><a href="/wishes">Go to Wish List</a></li>
 </ul>
 
-
-
-
-
-
-
-
-
-<footer th:insert="~{footer :: footer}"></footer>
+<!-- <footer th:insert="~{footer :: footer}"></footer> -->
 </body>
 </html>

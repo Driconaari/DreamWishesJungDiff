@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Wishlist</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
@@ -38,8 +39,8 @@
             <!-- Add a form for updating item details -->
             <form th:action="@{/wishlist/update}" method="post">
                 <input type="hidden" name="itemId" th:value="${item.id}">
-                <input type="text" name="name" placeholder="New name">
-                <input type="text" name="description" placeholder="New description">
+                <input type="text" name="name" placeholder="New name" required>
+                <input type="text" name="description" placeholder="New description" required>
                 <!-- Add more fields for updating item details as needed -->
                 <input type="submit" value="Update">
             </form>
@@ -51,8 +52,8 @@
 <div>
     <h2>Add New Item to Wishlist:</h2>
     <form th:action="@{/wishlist/add}" method="post">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="description" placeholder="Description" required>
         <!-- Add more fields for adding a new item as needed -->
         <input type="submit" value="Add">
     </form>

@@ -52,16 +52,15 @@
 
 </div>
 
-<h2>Wish List:</h2>
 <div th:if="${wishlistDTO != null}">
     <ul>
-        <!-- Use Thymeleaf to loop through the list of tourist attractions -->
-        <li th:each="wish : ${wishlistDTO.wishes}">
-            <span th:text="${wish.name}"></span> - <span th:text="${wish.description}"></span>
+        <!-- Use Thymeleaf to loop through the list of items -->
+        <li th:each="item : ${wishlistDTO.items}">
+            <span th:text="${item.name}"></span> - <span th:text="${item.description}"></span>
         </li>
     </ul>
     <ul>
-        <li><a href="/wishlists/add">Add a Wish</a></li>
+        <li><a href="/wishlists/add">Add an Item</a></li>
         <li><a href="/wishlists/user">Go to Wish List</a></li>
     </ul>
 </div>

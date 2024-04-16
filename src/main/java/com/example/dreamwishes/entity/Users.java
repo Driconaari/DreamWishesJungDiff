@@ -1,8 +1,11 @@
 package com.example.dreamwishes.entity;
 
+
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Users")
@@ -15,12 +18,19 @@ public class Users {
     private Long userID;
 
     @Column(name = "Username", unique = true)
+    @NotNull
+    @NotEmpty
     private String username;
 
     @Column(name = "Email", unique = true)
+    @NotNull
+    @NotEmpty
     private String email;
 
+
     @Column(name = "Password")
+    @NotNull
+    @NotEmpty
     private String password;
 
     // Constructors
@@ -67,4 +77,15 @@ public class Users {
         this.userID = userID;
     }
 
+    public boolean isEnabled() {
+        return this.enabled();
+    }
+
+    private boolean enabled() {
+        return true;
+    }
+
+    public Long getId() {
+        return this.userID;
+    }
 }

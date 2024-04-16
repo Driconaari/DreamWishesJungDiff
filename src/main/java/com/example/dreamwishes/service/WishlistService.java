@@ -111,7 +111,7 @@ public class WishlistService {
     }
 
     public List<Wishlist> getWishlistsByUserId(Long userID) {
-        return wishlistRepository.findByUserId(userID);
+        return wishlistRepository.findByUser_UserID(userID);
     }
 
 

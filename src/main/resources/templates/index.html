@@ -53,13 +53,9 @@
 <div th:if="${wishlistDTO != null}">
     <ul>
         <!-- Use Thymeleaf to loop through the list of items -->
-        <li th:each="item : ${wishlistDTO.items}">
-            <span th:text="${item.name}"></span> - <span th:text="${item.description}"></span>
-        </li>
     </ul>
     <ul>
         <li><a href="/api/wishlists/add">Add a wish</a></li>
-        <li><a href="/items/add">Add an Item</a></li>
         <li><a href="/wishlists/user">Go to Wish List</a></li>
     </ul>
 </div>

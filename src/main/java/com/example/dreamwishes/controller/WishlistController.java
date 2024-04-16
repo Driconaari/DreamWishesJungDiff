@@ -80,20 +80,20 @@ public class WishlistController {
         return ResponseEntity.ok(wishlists);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Wishlist> getWishlistById(@PathVariable Long id) {
-        Wishlist wishlist = wishlistService.getWishlistById(id);
-        if (wishlist == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(wishlist);
+   @GetMapping("/{id}")
+public ResponseEntity<Wishlist> getWishlistById(@PathVariable Long id) {
+    Wishlist wishlist = wishlistService.getWishlistById(id);
+    if (wishlist == null) {
+        return ResponseEntity.notFound().build();
     }
+    return ResponseEntity.ok(wishlist);
+}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWishlist(@PathVariable Long id) {
-        wishlistService.deleteWishlist(id);
-        return ResponseEntity.noContent().build();
-    }
+   @DeleteMapping("/{id}")
+public ResponseEntity<Void> deleteWishlist(@PathVariable Long id) {
+    wishlistService.deleteWishlist(id);
+    return ResponseEntity.noContent().build();
+}
 
     @GetMapping("/add")
     public String getAddWishPage(Model model) {
@@ -103,9 +103,9 @@ public class WishlistController {
 
     @PostMapping("/add/session")
     public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId != null) {
-            Users currentUser = userService.getUserById(userId).orElse(null);
+        Long userID = (Long) session.getAttribute("userID");
+        if (userID != null) {
+            Users currentUser = userService.getUserById(userID).orElse(null);
             if (currentUser != null) {
                 newWish.setUser(currentUser); // Set the user of the new wish
                 newWish.setTimestamp(new Timestamp(new Date().getTime())); // Set the current date and time as the timestamp
@@ -128,8 +128,8 @@ public class WishlistController {
         public String showUserWishes(HttpSession session, Model model) {
             Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
             if (loggedIn != null && loggedIn) {
-                Long userId = (Long) session.getAttribute("userId");
-                Users currentUser = userService.getUserById(userId).orElse(null);
+                Long userID = (Long) session.getAttribute("userId");
+                Users currentUser = userService.getUserById(userID).orElse(null);
                 if (currentUser != null) {
                     List<Wishlist> userWishes = wishlistRepository.findByUser(currentUser);
                     if (userWishes != null && !userWishes.isEmpty()) {

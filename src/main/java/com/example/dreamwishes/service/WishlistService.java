@@ -50,7 +50,7 @@ public class WishlistService {
             Date date = wishlist.getTimestamp();
             Timestamp sqlTimestamp = new Timestamp(date.getTime());
 
-            WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserId(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
+            WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserID(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
 
             return Collections.singletonList(wishModel);
         } else {
@@ -78,7 +78,7 @@ public class WishlistService {
                 Date date = wishlist.getTimestamp();
                 Timestamp sqlTimestamp = new Timestamp(date.getTime());
 
-                WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserId(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
+                WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserID(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
 
                 // Add the WishesModel to the WishlistDTO
                 wishlistDTO.addWish(wishModel);
@@ -86,5 +86,27 @@ public class WishlistService {
         }
 
         return wishlistDTO;
+    }
+
+    public void addWish(WishlistDTO wishlistDTO, Long userId) {
+        // Fetch the user
+        Users user = userRepository.findById(userId).orElse(null);
+
+        if (user != null) {
+            // Create a new Wishlist object and set its fields based on the WishlistDTO
+            Wishlist wishlist = new Wishlist();
+            wishlist.setUser(user);
+            wishlist.setItemName(wishlistDTO.getItemName());
+            wishlist.setDescription(wishlistDTO.getDescription());
+            wishlist.setPrice(wishlistDTO.getPrice());
+            wishlist.setPriority(wishlistDTO.getPriority());
+            wishlist.setCategory(wishlistDTO.getCategory());
+
+            // Set available to true by default when adding a new wish
+            wishlist.setAvailable(true);
+
+            // Save the new Wishlist object to the database
+            wishlistRepository.save(wishlist);
+        }
     }
 }

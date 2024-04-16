@@ -34,13 +34,7 @@ public class Users {
     }
 
     // Getters and setters
-    public Long getUserID() {
-        return userID;
-    }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
 
     public String getUsername() {
         return username;
@@ -66,7 +60,11 @@ public class Users {
         this.password = password;
     }
 
-    public Long getUserId() {
+    public Long getUserID() {
         return userID;
     }
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
 }

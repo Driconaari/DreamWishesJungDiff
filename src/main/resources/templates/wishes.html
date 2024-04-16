@@ -23,7 +23,7 @@
   <h2>Wishlist Items:</h2>
   <ul>
     <!-- Loop through each item in the wishlist -->
-    <li th:each="item : ${wishlist.items}">
+    <li th:each="item : ${wishlist.item}"> <!-- Changed from ${wishlist.items} to ${wishlist.item} -->
       <!-- Display item details -->
       <p>Item ID: <span th:text="${item.id}"></span></p>
       <p>Name: <span th:text="${item.name}"></span></p>

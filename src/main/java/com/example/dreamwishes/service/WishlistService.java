@@ -1,5 +1,6 @@
 package com.example.dreamwishes.service;
 
+import com.example.dreamwishes.dto.ItemsDTO;
 import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Items;
 import com.example.dreamwishes.entity.Users;
@@ -23,6 +24,23 @@ public class WishlistService {
 
     private final UserRepository userRepository;
 
+
+@Autowired
+private ItemsService itemsService;
+
+// In WishlistService.java
+
+public Wishlist createWishlist(Wishlist wishlist, Long itemId, Long userId) {
+    ItemsDTO itemDto = itemsService.getItemById(itemId);
+    Users user = userRepository.findById(userId).orElse(null);
+    if (itemDto != null && user != null) {
+        Items item = itemsService.convertDtoToEntity(itemDto);
+        wishlist.setItem(item);
+        wishlist.setUser(user);
+        return wishlistRepository.save(wishlist);
+    }
+    return null;
+}
     @Autowired
     public WishlistService(WishlistRepository wishlistRepository, UserRepository userRepository) {
         this.wishlistRepository = wishlistRepository;

@@ -22,13 +22,16 @@
 <div>
     <h2>Wishlist Items:</h2>
     <ul>
-        <!-- Loop through each item in the wishlist -->
+        th:each="wishlist : ${wishlists}">
+    <ul>
         <li th:each="item : ${wishlist.items}">
             <!-- Display item details -->
             <p>Item ID: <span th:text="${item.id}"></span></p>
             <p>Name: <span th:text="${item.name}"></span></p>
             <p>Description: <span th:text="${item.description}"></span></p>
             <!-- Add more item details as needed -->
+        </li>
+    </ul>
 
             <!-- Add buttons for actions -->
             <form th:action="@{/wishlist/delete}" method="post">

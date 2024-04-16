@@ -27,6 +27,17 @@ public class ItemsService {
         return itemsDTO;
     }
 
+
+    // In ItemsService.java
+
+public Items convertDtoToEntity(ItemsDTO itemsDTO) {
+    Items item = new Items();
+    item.setItemName(itemsDTO.getName());
+    item.setDescription(itemsDTO.getDescription());
+    item.setPrice(itemsDTO.getPrice());
+    // Map other fields as needed
+    return item;
+}
     // Helper method to map Items entity to ItemsDTO
     private ItemsDTO mapToDTO(Items item) {
         ItemsDTO itemsDTO = new ItemsDTO();

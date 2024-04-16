@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.net.URI;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Date;
+
 
 // WishlistController.java
 @Controller
@@ -92,22 +95,40 @@ public class WishlistController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Wishlist> addWish(@RequestBody Wishlist wishlist) {
-        Wishlist createdWishlist = wishlistService.createWishlist(wishlist);
-        if (createdWishlist != null) {
-            return ResponseEntity
-                    .created(URI.create("/api/wishlists/" + createdWishlist.getWishlistId()))
-                    .body(createdWishlist);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    // new wish method
+    @PostMapping("/add/session/{itemId}")
+    public String addWish(@ModelAttribute Wishlist newWish, @PathVariable Long itemId, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            Wishlist createdWishlist = wishlistService.createWishlist(newWish, itemId, userId);
+            if (createdWishlist != null) {
+                return "redirect:/wishes"; // Redirect back to the wishes page
+            }
         }
+        return "redirect:/login";
     }
-@GetMapping("/add")
-public String getAddWishPage(Model model) {
-    model.addAttribute("newWish", new Wishlist()); // Add an empty Wishlist object to the model
-    return "addwish"; // Return the view name
+ /*
+  @PostMapping("/add")
+public ResponseEntity<Wishlist> addWish(@RequestBody Wishlist wishlist) {
+    Long itemId = // get the item ID from the request
+    Long userId = // get the user ID from the request
+    Wishlist createdWishlist = wishlistService.createWishlist(wishlist, itemId, userId);
+    if (createdWishlist != null) {
+        return ResponseEntity
+                .created(URI.create("/api/wishlists/" + createdWishlist.getWishlistId()))
+                .body(createdWishlist);
+    } else {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 }
+
+  */
+
+    @GetMapping("/add")
+    public String getAddWishPage(Model model) {
+        model.addAttribute("newWish", new Wishlist()); // Add an empty Wishlist object to the model
+        return "addwish"; // Return the view name
+    }
 
     @PostMapping("/add/session")
     public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
@@ -116,6 +137,7 @@ public String getAddWishPage(Model model) {
             Users currentUser = userService.getUserById(userId).orElse(null);
             if (currentUser != null) {
                 newWish.setUser(currentUser); // Set the user of the new wish
+                newWish.setTimestamp(new Timestamp(new Date().getTime())); // Set the current date and time as the timestamp
                 wishlistRepository.save(newWish); // Save the new wish
                 return "redirect:/wishes"; // Redirect back to the wishes page
             }
@@ -123,21 +145,34 @@ public String getAddWishPage(Model model) {
         return "redirect:/login";
     }
 
+    @Controller
+    public class WishesController {
 
-    @GetMapping("/user")
-    public String showUserWishes(HttpSession session, Model model) {
-        Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
-        if (loggedIn != null && loggedIn) {
-            Long userId = (Long) session.getAttribute("userId");
-            Users currentUser = userService.getUserById(userId).orElse(null);
-            if (currentUser != null) {
-                List<Wishlist> userWishes = wishlistRepository.findByUser(currentUser);
-                model.addAttribute("user", currentUser);
-                model.addAttribute("wishes", userWishes);
-                return "wishes";
+        @Autowired
+        private UserService userService;
+        @Autowired
+        private WishlistRepository wishlistRepository;
+
+        @GetMapping("/wishes")
+        public String showUserWishes(HttpSession session, Model model) {
+            Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
+            if (loggedIn != null && loggedIn) {
+                Long userId = (Long) session.getAttribute("userId");
+                Users currentUser = userService.getUserById(userId).orElse(null);
+                if (currentUser != null) {
+                    List<Wishlist> userWishes = wishlistRepository.findByUser(currentUser);
+                    if (userWishes != null && !userWishes.isEmpty()) {
+                        // Add the first wishlist to the model
+                        model.addAttribute("wishlist", userWishes.get(0));
+                    } else {
+                        // Handle the case where there are no wishlists
+                        // This could be by creating a new wishlist, showing an error message, etc.
+                    }
+                    model.addAttribute("user", currentUser);
+                    return "wishes";
+                }
             }
+            return "redirect:/login";
         }
-        return "redirect:/login";
     }
 }
-

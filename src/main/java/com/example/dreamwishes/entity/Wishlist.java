@@ -17,9 +17,10 @@ public class Wishlist {
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
     private Users user;
 
+
     @ManyToOne
     @JoinColumn(name = "ItemID", referencedColumnName = "ItemID")
-    private Items item;
+    private Items item; // Changed from ItemsDTO to Items
 
     @Column(name = "Priority")
     private Integer priority;
@@ -30,7 +31,7 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public Wishlist(Users user, Items item, Integer priority) {
+    public Wishlist(Users user, Items item, Integer priority) { // Changed from ItemsDTO to Items
         this.user = user;
         this.item = item;
         this.priority = priority;
@@ -53,11 +54,11 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Items getItem() {
+    public Items getItem() { // Changed from ItemsDTO to Items
         return item;
     }
 
-    public void setItem(Items item) {
+    public void setItem(Items item) { // Changed from ItemsDTO to Items
         this.item = item;
     }
 
@@ -76,7 +77,8 @@ public class Wishlist {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-public Long getId() {
+
+    public Long getId() {
         return this.wishlistId;
     }
 

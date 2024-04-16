@@ -1,53 +1,33 @@
 package com.example.dreamwishes.service;
 
+import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Items;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.model.WishesModel;
+import com.example.dreamwishes.repository.UserRepository;
 import com.example.dreamwishes.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-
-import java.util.*;
+import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WishlistService {
 
     private final WishlistRepository wishlistRepository;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public WishlistService(WishlistRepository wishlistRepository) {
+    public WishlistService(WishlistRepository wishlistRepository, UserRepository userRepository) {
         this.wishlistRepository = wishlistRepository;
+        this.userRepository = userRepository;
     }
-
-
-    public List<WishesModel> getWishesByUsername(String username) {
-        // Fetch the user's wishlist by username
-        List<Wishlist> wishlists = wishlistRepository.findByUserUsername(username);
-        // Extract wishes from items in wishlists
-        List<WishesModel> wishes = new ArrayList<>();
-        for (Wishlist wishlist : wishlists) {
-            Items item = wishlist.getItem();
-            if (item != null) {
-                // Convert each Wishlist to a WishesModel
-                java.util.Date date = wishlist.getTimestamp();
-                java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(date.getTime());
-
-                WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), sqlTimestamp);
-                wishModel.setItemName(item.getItemName());
-                wishModel.setDescription(item.getDescription());
-                wishModel.setPrice(item.getPrice());
-                // Add the WishesModel to the list
-                wishes.add(wishModel);
-            }
-        }
-
-        return wishes;
-    }
-
-    // Original methods from your old WishlistService class
 
     public List<Wishlist> getAllWishlists() {
         return wishlistRepository.findAll();
@@ -65,36 +45,7 @@ public class WishlistService {
         wishlistRepository.deleteById(id);
     }
 
-    // Method to get all wishes from all wishlists
-    public Collection<? extends WishesModel> getUserWishes() {
-        // Get the username of the currently logged-in user
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        // Fetch wishes by username
-        return getWishesByUsername(username);
-    }
-
-    // New methods from your updated WishlistService class
-
-    public List<Wishlist> getAllItemsInWishlistForUser(Users user) {
-        return wishlistRepository.findByUser(user);
-    }
-
-    public Optional<Wishlist> getItemInWishlistById(Long wishlistId) {
-        return wishlistRepository.findById(wishlistId);
-    }
-
-    public Wishlist addItemToWishlist(Users user, Items item, int priority) {
-        Wishlist wishlistItem = new Wishlist();
-        wishlistItem.setUser(user);
-        wishlistItem.setItem(item);
-        wishlistItem.setPriority(priority);
-        return wishlistRepository.save(wishlistItem);
-    }
-
-    public void removeItemFromWishlist(Long wishlistId) {
-        wishlistRepository.deleteById(wishlistId);
-    }
 
     public List<WishesModel> getWishesByWishlistId(Long wishlistId) {
         Optional<Wishlist> wishlistOptional = wishlistRepository.findById(wishlistId);
@@ -113,4 +64,42 @@ public class WishlistService {
             return Collections.emptyList();
         }
     }
+
+
+    public WishlistDTO getWishlistForUser(Long UserID) {
+        // Fetch the user
+        Users user = userRepository.findById(UserID).orElse(null);
+
+        // Fetch the user's wishlist by user
+        List<Wishlist> wishlists = null;
+        if (user != null) {
+            wishlists = wishlistRepository.findByUser_UserID(user.getUserID());
+        }
+
+        // Create a new WishlistDTO object
+        WishlistDTO wishlistDTO = new WishlistDTO();
+
+        // Convert each Wishlist to a WishesModel and add it to the WishlistDTO
+        if (wishlists != null) {
+            for (Wishlist wishlist : wishlists) {
+                Items item = wishlist.getItem();
+                if (item != null) {
+                    // Convert each Wishlist to a WishesModel
+                    Date date = wishlist.getTimestamp();
+                    Timestamp sqlTimestamp = new Timestamp(date.getTime());
+
+                    WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), sqlTimestamp);
+                    wishModel.setItemName(item.getItemName());
+                    wishModel.setDescription(item.getDescription());
+                    wishModel.setPrice(item.getPrice());
+
+                    // Add the WishesModel to the WishlistDTO
+                    wishlistDTO.addWish(wishModel);
+                }
+            }
+        }
+
+        return wishlistDTO;
+    }
 }
+

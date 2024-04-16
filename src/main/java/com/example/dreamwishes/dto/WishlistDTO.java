@@ -1,6 +1,8 @@
 package com.example.dreamwishes.dto;
 
 
+import com.example.dreamwishes.model.WishesModel;
+
 import java.util.List;
 
 public class WishlistDTO {
@@ -34,4 +36,11 @@ public class WishlistDTO {
     public void setItems(List<ItemsDTO> items) {
         this.items = items;
     }
+
+    public void addWish(WishesModel wishModel) {
+    }
+
+
+
+
 }

@@ -14,6 +14,8 @@
     <a href="/" class="active">Home</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
 
     <!-- Conditionally display "Login", "Logout", or "Register" link -->
     <div th:if="${loggedIn}" class="login">
@@ -34,31 +36,35 @@
 <section>
     <div>
         <h2>Welcome to your wishing list!</h2>
-        <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your favorite brands or anything else you desire!</p>
+        <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your
+            favorite brands or anything else you desire!</p>
     </div>
 </section>
 
 <div class="image-container">
 
     <!-- add images to front page -->
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOG6-ipNxEm846isyDUvC-JBdkjLAD7hr0NQ&s" class="small-image">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s" class="small-image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOG6-ipNxEm846isyDUvC-JBdkjLAD7hr0NQ&s"
+         class="small-image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s"
+         class="small-image">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
-
 
 </div>
 
 <h2>Wish List:</h2>
-<ul>
-    <!-- Use Thymeleaf to loop through the list of tourist attractions -->
-    <li th:each="wish : ${Wishlist}">
-        <span th:text="${wish.name}"></span> - <span th:text="${wish.description}"></span>
-    </li>
-</ul>
-<ul>
-    <li><a href="/wishes/add">Add a Wish</a></li>
-    <li><a href="/wishes">Go to Wish List</a></li>
-</ul>
+<div th:if="${wishlistDTO != null}">
+    <ul>
+        <!-- Use Thymeleaf to loop through the list of tourist attractions -->
+        <li th:each="wish : ${wishlistDTO.wishes}">
+            <span th:text="${wish.name}"></span> - <span th:text="${wish.description}"></span>
+        </li>
+    </ul>
+    <ul>
+        <li><a href="/wishlists/add">Add a Wish</a></li>
+        <li><a href="/wishlists/user">Go to Wish List</a></li>
+    </ul>
+</div>
 
 <!-- <footer th:insert="~{footer :: footer}"></footer> -->
 </body>

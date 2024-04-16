@@ -146,5 +146,12 @@ public ResponseEntity<Void> deleteWishlist(@PathVariable Long id) {
             return "redirect:/login";
         }
     }
-
+@GetMapping("/user/{userID}")
+public ResponseEntity<List<Wishlist>> getWishlistsByUserId(@PathVariable Long userID) {
+    List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userID);
+    if (wishlists == null || wishlists.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(wishlists);
+}
 }

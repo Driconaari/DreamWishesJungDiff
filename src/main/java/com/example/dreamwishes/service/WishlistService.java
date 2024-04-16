@@ -109,4 +109,10 @@ public class WishlistService {
             wishlistRepository.save(wishlist);
         }
     }
+
+    public List<Wishlist> getWishlistsByUserId(Long userID) {
+        return wishlistRepository.findByUserId(userID);
+    }
+
+
 }

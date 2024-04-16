@@ -5,7 +5,7 @@ package com.example.dreamwishes.controller;
 import com.example.dreamwishes.dto.WishlistDTO;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
-import com.example.dreamwishes.model.WishesModel;
+import com.example.dreamwishes.model.WishlistModel;
 import com.example.dreamwishes.repository.WishlistRepository;
 import com.example.dreamwishes.service.UserService;
 import com.example.dreamwishes.service.WishlistService;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 
 // WishlistController.java
@@ -42,8 +42,8 @@ public class WishlistController {
     private WishlistRepository wishlistRepository;
 
     @GetMapping("/{wishlistId}/wishes")
-    public ResponseEntity<List<WishesModel>> getWishesByWishlistId(@PathVariable Long wishlistId) {
-        List<WishesModel> wishes = wishlistService.getWishesByWishlistId(wishlistId);
+    public ResponseEntity<List<WishlistModel>> getWishesByWishlistId(@PathVariable Long wishlistId) {
+        List<WishlistModel> wishes = wishlistService.getWishesByWishlistId(wishlistId);
         if (wishes.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -94,35 +94,6 @@ public class WishlistController {
         wishlistService.deleteWishlist(id);
         return ResponseEntity.noContent().build();
     }
-
-    // new wish method
-    @PostMapping("/add/session/{itemId}")
-    public String addWish(@ModelAttribute Wishlist newWish, @PathVariable Long itemId, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId != null) {
-            Wishlist createdWishlist = wishlistService.createWishlist(newWish, itemId, userId);
-            if (createdWishlist != null) {
-                return "redirect:/wishes"; // Redirect back to the wishes page
-            }
-        }
-        return "redirect:/login";
-    }
- /*
-  @PostMapping("/add")
-public ResponseEntity<Wishlist> addWish(@RequestBody Wishlist wishlist) {
-    Long itemId = // get the item ID from the request
-    Long userId = // get the user ID from the request
-    Wishlist createdWishlist = wishlistService.createWishlist(wishlist, itemId, userId);
-    if (createdWishlist != null) {
-        return ResponseEntity
-                .created(URI.create("/api/wishlists/" + createdWishlist.getWishlistId()))
-                .body(createdWishlist);
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
-}
-
-  */
 
     @GetMapping("/add")
     public String getAddWishPage(Model model) {
@@ -175,4 +146,5 @@ public ResponseEntity<Wishlist> addWish(@RequestBody Wishlist wishlist) {
             return "redirect:/login";
         }
     }
+
 }

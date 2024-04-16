@@ -4,9 +4,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @Entity
 @Table(name = "Users")
 @Component
@@ -25,9 +22,6 @@ public class Users {
 
     @Column(name = "Password")
     private String password;
-
-    // Constructors, getters, and setters
-    // You can generate these using your IDE or manually write them
 
     // Constructors
     public Users() {
@@ -72,22 +66,7 @@ public class Users {
         this.password = password;
     }
 
-    public Object getId() {
+    public Long getUserId() {
         return userID;
     }
-
-/*
-    @OneToMany(mappedBy = "user")
-    private List<WishesEntity> wishes;
-
-    public List<WishesEntity> getWishes() {
-        return wishes;
-    }
-
-    public void setWishes(List<WishesEntity> wishes) {
-        this.wishes = wishes;
-    }
-
- */
 }
-

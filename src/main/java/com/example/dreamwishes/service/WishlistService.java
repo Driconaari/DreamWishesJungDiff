@@ -1,11 +1,9 @@
 package com.example.dreamwishes.service;
 
-import com.example.dreamwishes.dto.ItemsDTO;
 import com.example.dreamwishes.dto.WishlistDTO;
-import com.example.dreamwishes.entity.Items;
 import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
-import com.example.dreamwishes.model.WishesModel;
+import com.example.dreamwishes.model.WishlistModel;
 import com.example.dreamwishes.repository.UserRepository;
 import com.example.dreamwishes.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,26 +19,8 @@ import java.util.Optional;
 public class WishlistService {
 
     private final WishlistRepository wishlistRepository;
-
     private final UserRepository userRepository;
 
-
-@Autowired
-private ItemsService itemsService;
-
-// In WishlistService.java
-
-public Wishlist createWishlist(Wishlist wishlist, Long itemId, Long userId) {
-    ItemsDTO itemDto = itemsService.getItemById(itemId);
-    Users user = userRepository.findById(userId).orElse(null);
-    if (itemDto != null && user != null) {
-        Items item = itemsService.convertDtoToEntity(itemDto);
-        wishlist.setItem(item);
-        wishlist.setUser(user);
-        return wishlistRepository.save(wishlist);
-    }
-    return null;
-}
     @Autowired
     public WishlistService(WishlistRepository wishlistRepository, UserRepository userRepository) {
         this.wishlistRepository = wishlistRepository;
@@ -63,26 +43,20 @@ public Wishlist createWishlist(Wishlist wishlist, Long itemId, Long userId) {
         wishlistRepository.deleteById(id);
     }
 
-
-
-    public List<WishesModel> getWishesByWishlistId(Long wishlistId) {
+    public List<WishlistModel> getWishesByWishlistId(Long wishlistId) {
         Optional<Wishlist> wishlistOptional = wishlistRepository.findById(wishlistId);
         if (wishlistOptional.isPresent()) {
             Wishlist wishlist = wishlistOptional.get();
-            Items item = wishlist.getItem();
-            java.util.Date date = wishlist.getTimestamp();
-            java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(date.getTime());
+            Date date = wishlist.getTimestamp();
+            Timestamp sqlTimestamp = new Timestamp(date.getTime());
 
-            WishesModel wishModel = new WishesModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), sqlTimestamp);
-            wishModel.setItemName(item.getItemName());
-            wishModel.setDescription(item.getDescription());
-            wishModel.setPrice(item.getPrice());
+            WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserId(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
+
             return Collections.singletonList(wishModel);
         } else {
             return Collections.emptyList();
         }
     }
-
 
     public WishlistDTO getWishlistForUser(Long UserID) {
         // Fetch the user
@@ -91,7 +65,7 @@ public Wishlist createWishlist(Wishlist wishlist, Long itemId, Long userId) {
         // Fetch the user's wishlist by user
         List<Wishlist> wishlists = null;
         if (user != null) {
-            wishlists = wishlistRepository.findByUser_UserID(user.getUserID());
+            wishlists = wishlistRepository.findByUser(user);
         }
 
         // Create a new WishlistDTO object
@@ -100,24 +74,17 @@ public Wishlist createWishlist(Wishlist wishlist, Long itemId, Long userId) {
         // Convert each Wishlist to a WishesModel and add it to the WishlistDTO
         if (wishlists != null) {
             for (Wishlist wishlist : wishlists) {
-                Items item = wishlist.getItem();
-                if (item != null) {
-                    // Convert each Wishlist to a WishesModel
-                    Date date = wishlist.getTimestamp();
-                    Timestamp sqlTimestamp = new Timestamp(date.getTime());
+                // Convert each Wishlist to a WishesModel
+                Date date = wishlist.getTimestamp();
+                Timestamp sqlTimestamp = new Timestamp(date.getTime());
 
-                    WishesModel wishModel = new WishesModel(wishlist.getId(), wishlist.getUser().getId(), item.getItemId(), wishlist.getPriority(), sqlTimestamp);
-                    wishModel.setItemName(item.getItemName());
-                    wishModel.setDescription(item.getDescription());
-                    wishModel.setPrice(item.getPrice());
+                WishlistModel wishModel = new WishlistModel(wishlist.getWishlistId(), (Long) wishlist.getUser().getUserId(), wishlist.getItemName(), wishlist.getDescription(), wishlist.getPrice(), wishlist.getAvailable(), wishlist.getCategory(), wishlist.getPriority(), sqlTimestamp);
 
-                    // Add the WishesModel to the WishlistDTO
-                    wishlistDTO.addWish(wishModel);
-                }
+                // Add the WishesModel to the WishlistDTO
+                wishlistDTO.addWish(wishModel);
             }
         }
 
         return wishlistDTO;
     }
 }
-

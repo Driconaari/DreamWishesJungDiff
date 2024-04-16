@@ -1,54 +1,30 @@
-package com.example.dreamwishes.entity;
+package com.example.dreamwishes.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "wishlist")
-public class Wishlist {
+public class WishlistModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "WishlistID")
     private Long wishlistId;
-
-    @ManyToOne
-    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
-    private Users user;
-
-    @Column(name = "ItemName")
+    private Long userId;
     private String itemName;
-
-    @Column(name = "Description")
     private String description;
-
-    @Column(name = "Price")
     private BigDecimal price;
-
-    @Column(name = "Available")
     private Boolean available;
-
-    @Column(name = "Category")
     private String category;
-
-    @Column(name = "Priority")
     private Integer priority;
-
-    @Column(name = "Timestamp", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
-    public Wishlist() {
-    }
-
-    public Wishlist(Users user, String itemName, String description, BigDecimal price, Boolean available, String category, Integer priority) {
-        this.user = user;
+    public WishlistModel(Long wishlistId, Long userId, String itemName, String description, BigDecimal price, Boolean available, String category, Integer priority, Timestamp timestamp) {
+        this.wishlistId = wishlistId;
+        this.userId = userId;
         this.itemName = itemName;
         this.description = description;
         this.price = price;
         this.available = available;
         this.category = category;
         this.priority = priority;
+        this.timestamp = timestamp;
     }
 
     // Getters and setters
@@ -60,12 +36,12 @@ public class Wishlist {
         this.wishlistId = wishlistId;
     }
 
-    public Users getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getItemName() {

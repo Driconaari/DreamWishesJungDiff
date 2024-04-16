@@ -22,7 +22,7 @@ import java.util.List;
 
 // WishlistController.java
 @Controller
-@RequestMapping("/wishlists")
+@RequestMapping("/api/wishlists")
 public class WishlistController {
 
     private final WishlistService wishlistService;
@@ -109,32 +109,35 @@ public String getAddWishPage(Model model) {
     return "addwish"; // Return the view name
 }
 
-   @PostMapping("/add/session")
-public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
-    Long userId = (Long) session.getAttribute("userId");
-    if (userId != null) {
-        Users currentUser = userService.getUserById(userId).orElse(null);
-        newWish.setUser(currentUser); // Set the user of the new wish
-        wishlistRepository.save(newWish); // Save the new wish
-        return "redirect:/wishes"; // Redirect back to the wishes page
-    } else {
+    @PostMapping("/add/session")
+    public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            Users currentUser = userService.getUserById(userId).orElse(null);
+            if (currentUser != null) {
+                newWish.setUser(currentUser); // Set the user of the new wish
+                wishlistRepository.save(newWish); // Save the new wish
+                return "redirect:/wishes"; // Redirect back to the wishes page
+            }
+        }
         return "redirect:/login";
     }
-}
 
 
     @GetMapping("/user")
-public String showUserWishes(HttpSession session, Model model) {
-    if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn")) {
-        Long userId = (Long) session.getAttribute("userId");
-        Users currentUser = userService.getUserById(userId).orElse(null);
-        List<Wishlist> userWishes = wishlistRepository.findByUser(currentUser);
-        model.addAttribute("user", currentUser);
-        model.addAttribute("wishes", userWishes);
-        return "wishes";
-    } else {
+    public String showUserWishes(HttpSession session, Model model) {
+        Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
+        if (loggedIn != null && loggedIn) {
+            Long userId = (Long) session.getAttribute("userId");
+            Users currentUser = userService.getUserById(userId).orElse(null);
+            if (currentUser != null) {
+                List<Wishlist> userWishes = wishlistRepository.findByUser(currentUser);
+                model.addAttribute("user", currentUser);
+                model.addAttribute("wishes", userWishes);
+                return "wishes";
+            }
+        }
         return "redirect:/login";
     }
-}
 }
 

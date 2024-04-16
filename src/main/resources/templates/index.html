@@ -14,8 +14,6 @@
     <a href="/" class="active">Home</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
-    <a href="/register">Register</a>
-    <a href="/login">Login</a>
 
     <!-- Conditionally display "Login", "Logout", or "Register" link -->
     <div th:if="${loggedIn}" class="login">
@@ -60,7 +58,7 @@
         </li>
     </ul>
     <ul>
-        <li><a href="/wishlists/add">Add an Item</a></li>
+        <li><a href="/api/wishlists/add">Add an Item</a></li>
         <li><a href="/wishlists/user">Go to Wish List</a></li>
     </ul>
 </div>

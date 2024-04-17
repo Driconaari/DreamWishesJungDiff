@@ -121,7 +121,7 @@ public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
             Wishlist savedWish = wishlistRepository.save(newWish);
             System.out.println("Saved wish: " + savedWish); // Log the saved wish
             if (savedWish != null) {
-                return "redirect:/wishes";
+                return "redirect:/";
             }
         }
     }

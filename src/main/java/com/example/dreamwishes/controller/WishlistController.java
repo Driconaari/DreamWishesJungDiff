@@ -128,14 +128,6 @@ public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
     return "redirect:/login";
 }
 
-    @Controller
-    public class WishesController {
-
-        @Autowired
-        private UserService userService;
-        @Autowired
-        private WishlistRepository wishlistRepository;
-
 @GetMapping("/user/wishes")
 public String showUserWishlist(HttpSession session, Model model) {
     Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
@@ -167,4 +159,3 @@ public String showUserWishlist(HttpSession session, Model model) {
     }
 
 //hmmm
-}

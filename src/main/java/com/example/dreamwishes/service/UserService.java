@@ -84,7 +84,9 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
+public Optional<Users> getUserByUsername(String username) {
+    return Optional.ofNullable(userRepository.findByUsername(username));
+}
 
     public Optional<Long> getUserId(String username) {
     // Retrieve the user by username
@@ -97,6 +99,8 @@ public class UserService {
         // If the user doesn't exist, return an empty Optional
         return Optional.empty();
     }
+
+
 }
 
 

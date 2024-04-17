@@ -63,8 +63,6 @@ public class WishlistController {
     }
 
 
-
-
     @PostMapping
     public ResponseEntity<Wishlist> createWishlist(@RequestBody Wishlist wishlist) {
         Wishlist createdWishlist = wishlistService.createWishlist(wishlist);
@@ -108,54 +106,34 @@ public class WishlistController {
     }
 
 
-@PostMapping("/add/session")
-public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
-    Long userID = (Long) session.getAttribute("userId");
-    System.out.println("UserID from session: " + userID); // Log the userID
-    if (userID != null) {
-        Users currentUser = userService.getUserById(userID).orElse(null);
-        System.out.println("User from userService: " + currentUser); // Log the User object
-        if (currentUser != null) {
-            newWish.setUser(currentUser);
-            newWish.setTimestamp(new Timestamp(new Date().getTime()));
-            Wishlist savedWish = wishlistRepository.save(newWish);
-            System.out.println("Saved wish: " + savedWish); // Log the saved wish
-            if (savedWish != null) {
-                return "redirect:/";
-            }
-        }
-    }
-    return "redirect:/login";
-}
-
-@GetMapping("/user/wishes")
-public String showUserWishlist(HttpSession session, Model model) {
-    Boolean loggedIn = Boolean.valueOf(String.valueOf(session.getAttribute("loggedIn")));
-    if (loggedIn != null && loggedIn) {
+    @PostMapping("/add/session")
+    public String addWish(@ModelAttribute Wishlist newWish, HttpSession session) {
         Long userID = (Long) session.getAttribute("userId");
+        System.out.println("UserID from session: " + userID); // Log the userID
         if (userID != null) {
             Users currentUser = userService.getUserById(userID).orElse(null);
+            System.out.println("User from userService: " + currentUser); // Log the User object
             if (currentUser != null) {
-                List<Wishlist> userWishlist = wishlistRepository.findByUser(currentUser);
-                if (userWishlist != null && !userWishlist.isEmpty()) {
-                    model.addAttribute("wishlist", userWishlist.get(0));
-                    model.addAttribute("user", currentUser);
-                    return "wishlist";
+                newWish.setUser(currentUser);
+                newWish.setTimestamp(new Timestamp(new Date().getTime()));
+                Wishlist savedWish = wishlistRepository.save(newWish);
+                System.out.println("Saved wish: " + savedWish); // Log the saved wish
+                if (savedWish != null) {
+                    return "redirect:/";
                 }
             }
         }
+        return "redirect:/login";
     }
-    return "redirect:/login";
-}
 
-        @GetMapping("/user/{userID}")
-        public ResponseEntity<List<Wishlist>> getWishlistsByUserId(@PathVariable Long userID) {
-            List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userID);
-            if (wishlists == null || wishlists.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.ok(wishlists);
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Wishlist>> getWishlistsByUserId(@PathVariable Long userId) {
+        List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
+        if (wishlists.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(wishlists);
     }
 
+}
 //hmmm

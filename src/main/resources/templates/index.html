@@ -49,8 +49,6 @@
 
 </div>
 
-<body>
-<!-- ... -->
 <div th:if="${wishlistDTO != null}">
     <div th:if="${user != null}">
         <p th:text="${user.id}"></p>
@@ -64,5 +62,11 @@
     <li><a href="/api/wishlists/add">Add a wish</a></li>
     <li><a href="/api/wishlists/user">Go to Wish List</a></li>
 </ul>
+Search for a user that you may know:
+<form action="/api/users/search" method="get">
+    <input type="text" name="username" placeholder="Enter username">
+    <input type="submit" value="Search">
+</form>
 <!-- ... -->
 </body>
+</html>

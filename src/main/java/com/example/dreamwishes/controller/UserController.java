@@ -1,7 +1,9 @@
 package com.example.dreamwishes.controller;
 
 import com.example.dreamwishes.entity.Users;
+import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.service.UserService;
+import com.example.dreamwishes.service.WishlistService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +11,26 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/api/users")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final WishlistService wishlistService;
 
+    @Autowired
+    public UserController(UserService userService, WishlistService wishlistService) {
+        this.userService = userService;
+        this.wishlistService = wishlistService;
+    }
 
 
     @GetMapping("/login")
@@ -87,6 +94,20 @@ public String register(@ModelAttribute Users user) {
         String username = authentication.getName();
         model.addAttribute("username", username);
         return "dashboard";
+    }
+
+    @GetMapping("/search")
+    public String searchUser(@RequestParam("username") String username, Model model) {
+        Optional<Users> user = userService.getUserByUsername(username);
+        if (user.isPresent()) {
+            List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(user.get().getUserId());
+            model.addAttribute("user", user.get());
+            model.addAttribute("wishlists", wishlists);
+            return "profile"; // return the name of the Thymeleaf template for user profile
+        } else {
+            model.addAttribute("error", "User not found");
+            return "search"; // return the name of the Thymeleaf template for search
+        }
     }
 }
 

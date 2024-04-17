@@ -88,4 +88,8 @@ public class Users {
     public Long getId() {
         return this.userID;
     }
+
+    public Long getUserId() {
+        return this.userID;
+    }
 }

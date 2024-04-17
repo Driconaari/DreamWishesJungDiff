@@ -34,8 +34,7 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String showLoginPage() {
-        // Logic to show the login page
+    public String showLoginPage(Model model) {
         return "login";
     }
 
@@ -62,14 +61,14 @@ public class UserController {
         return "register";
     }
 
-   @PostMapping("/register")
-public String register(@ModelAttribute Users user) {
-    // set other fields as needed
-    logger.info("Attempting to register user: {}", user.getUsername());
-    userService.createUser(user);
-    logger.info("Registered user: {}", user.getUsername());
-    return "redirect:/login";
-}
+    @PostMapping("/register")
+    public String register(@ModelAttribute Users user) {
+        // set other fields as needed
+        logger.info("Attempting to register user: {}", user.getUsername());
+        userService.createUser(user);
+        logger.info("Registered user: {}", user.getUsername());
+        return "redirect:/login";
+    }
 
     @GetMapping("/profile")
     public String showUserProfile(HttpSession session, Model model) {
@@ -82,6 +81,7 @@ public String register(@ModelAttribute Users user) {
             return "redirect:/login";
         }
     }
+
     @PostMapping("/profile/update")
     public String updateProfile(@ModelAttribute Users updatedUser) {
         userService.updateUser(updatedUser.getUserID(), updatedUser);

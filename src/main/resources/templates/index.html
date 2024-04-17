@@ -14,13 +14,17 @@
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
 
-    <!-- Conditionally display "Login", "Logout", or "Register" link -->
+    <!-- Modify the login link to point to the login API endpoint -->
+    <div class="login">
+        <a href="/api/users/login">Login</a>
+    </div>
+
+    <!-- Conditionally display "Logout" link if logged in -->
     <div th:if="${loggedIn}" class="login">
         <a href="/logout">Logout</a>
     </div>
-    <div th:unless="${loggedIn}" class="login">
-        <a href="/login">Login</a>
-    </div>
+
+    <!-- Conditionally display "Register" link if not logged in -->
     <div th:unless="${loggedIn}" class="login">
         <a href="/register">Register</a>
     </div>
@@ -49,24 +53,28 @@
 
 </div>
 
-<div th:if="${wishlistDTO != null}">
-    <div th:if="${user != null}">
-        <p th:text="${user.id}"></p>
+<div th:if="${loggedIn}">
+    <div th:if="${wishlistDTO != null}">
+        <div th:if="${user != null}">
+            <p th:text="${user.id}"></p>
 
-        <ul>
-            <!-- Use Thymeleaf to loop through the list of items -->
-        </ul>
+            <ul>
+                <!-- Use Thymeleaf to loop through the list of items -->
+            </ul>
+        </div>
     </div>
 </div>
+
 <ul>
     <li><a href="/api/wishlists/add">Add a wish</a></li>
-    <li><a href="/api/wishlists/user">Go to Wish List</a></li>
+    <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
 </ul>
-Search for a user that you may know:
+
+<!-- Search for a user that you may know -->
 <form action="/api/users/search" method="get">
     <input type="text" name="username" placeholder="Enter username">
     <input type="submit" value="Search">
 </form>
-<!-- ... -->
+
 </body>
 </html>

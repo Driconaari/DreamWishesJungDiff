@@ -1,4 +1,4 @@
-package com.example.dreamwishes;
+package com.example.dreamwishes.config;
 
 import com.example.dreamwishes.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -57,20 +57,25 @@
     <div th:if="${wishlistDTO != null}">
         <div th:if="${user != null}">
             <p th:text="${user.id}"></p>
-
             <ul>
                 <!-- Use Thymeleaf to loop through the list of items -->
             </ul>
         </div>
     </div>
+    <ul>
+        <li><a href="/api/wishlists/add">Add a wish</a></li>
+        <!-- Display "Go to Wishlist" link only if logged in -->
+        <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
+    </ul>
 </div>
 
+only click on go to wishlist if logged in :)
 <ul>
     <li><a href="/api/wishlists/add">Add a wish</a></li>
     <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
 </ul>
 
-<!-- Search for a user that you may know -->
+ Search for a user that you may know or yourself:
 <form action="/api/users/search" method="get">
     <input type="text" name="username" placeholder="Enter username">
     <input type="submit" value="Search">

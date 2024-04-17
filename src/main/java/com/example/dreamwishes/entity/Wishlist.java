@@ -17,8 +17,8 @@ public class Wishlist {
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
     private Users user;
 
-    @Column(name = "ItemName")
-    private String itemName;
+    @Column(name = "Item_name")
+    private String item_name;
 
     @Column(name = "Description")
     private String description;
@@ -41,9 +41,9 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public Wishlist(Users user, String itemName, String description, BigDecimal price, Boolean available, String category, Integer priority) {
+    public Wishlist(Users user, String item_name, String description, BigDecimal price, Boolean available, String category, Integer priority) {
         this.user = user;
-        this.itemName = itemName;
+        this.item_name = item_name;
         this.description = description;
         this.price = price;
         this.available = available;
@@ -68,12 +68,12 @@ public class Wishlist {
         this.user = user;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getItem_name() {
+        return item_name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
     }
 
     public String getDescription() {

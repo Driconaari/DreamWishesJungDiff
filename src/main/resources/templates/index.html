@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,16 +49,20 @@
 
 </div>
 
+<body>
+<!-- ... -->
 <div th:if="${wishlistDTO != null}">
-    <ul>
-        <!-- Use Thymeleaf to loop through the list of items -->
-    </ul>
-    <ul>
-        <li><a href="/api/wishlists/add">Add a wish</a></li>
-        <li><a href="/wishlists/user">Go to Wish List</a></li>
-    </ul>
-</div>
+    <div th:if="${user != null}">
+        <p th:text="${user.id}"></p>
 
-<!-- <footer th:insert="~{footer :: footer}"></footer> -->
+        <ul>
+            <!-- Use Thymeleaf to loop through the list of items -->
+        </ul>
+    </div>
+</div>
+<ul>
+    <li><a href="/api/wishlists/add">Add a wish</a></li>
+    <li><a href="/api/wishlists/user">Go to Wish List</a></li>
+</ul>
+<!-- ... -->
 </body>
-</html>

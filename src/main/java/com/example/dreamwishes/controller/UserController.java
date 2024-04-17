@@ -67,7 +67,7 @@ public class UserController {
         logger.info("Attempting to register user: {}", user.getUsername());
         userService.createUser(user);
         logger.info("Registered user: {}", user.getUsername());
-        return "redirect:/login";
+        return "redirect:/api/users/login";
     }
 
     @GetMapping("/profile")

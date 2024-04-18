@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/homepage.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <title>DreamWishes</title>
+</head>
+<body>
+</body>
+
+<ul>
+    <li ><a href="/"><img src="/images/cloud-icon.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
+    <li style="float: right"><a href="/login"><img src="/images/lock-icon.png" alt="Home" style="width: 25px; height: 25px;"/></a></li>
+    <h1>DreamWishes</h1>
+
+</ul>
+
+
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/clouds-index.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        z-index: -1; /* Ensure the background is behind other content */
+    }
+
+    /* Additional styling for content */
+    .content {
+        position: relative;
+        z-index: 1; /* Ensure the content is on top of the background */
+    }
+</style>
+
+<div class="background-container"></div>
+<div class="content">
+
+</div>
+</html>
+
+<section>
+    <div style="margin-top: 100px">
+        <h2>Welcome to DreamWishes!</h2>
+        <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your favorite brands or anything else you desire!</p>
+    </div>
+</section>
+
+
+
+<div class="row">
+    <div class="container">
+        <div class="column01">
+            <div class="card01">
+                <h3><button class="button" onclick='location.href="/api/wishlists/add"'>Create a Wish</button></h3>
+                <p>Click here to add a Wish</p>
+                <p>           </p>
+                <table></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="column02">
+        <div class="card02">
+            <h3><button class="button" onclick='location.href="/api/wishlists/user"'>Your Wish List</button></h3>
+            <p>Click here to see your Wishlist!</p>
+            <p>           </p>
+        </div>
+    </div>
+</div>
+
+<div class="card03">
+    <h3><button class="logout-button" onclick="location.href='api/users/login'">Log out</button></h3>
+    <p>Click here to add a Wish</p>
+    <p>           </p>
+    <table></table>
+</div>
+<ul>
+    <!-- Use Thymeleaf to loop through the list of tourist attractions -->
+    <li th:each="attraction : ${attractions}">
+        <span th:text="${attraction.name}"></span> - <span th:text="${attraction.description}"></span>
+    </li>
+</ul>
+<ul>
+</ul>
+
+
+
+<footer th:insert="~{footer :: footer}"></footer>
+<body>
+

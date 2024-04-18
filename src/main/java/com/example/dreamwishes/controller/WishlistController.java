@@ -27,8 +27,9 @@ import java.util.List;
 
 // WishlistController.java
 @Controller
-@RequestMapping("/api/wishlists")
+@RequestMapping("api/wishlists")
 public class WishlistController {
+
 
     private final WishlistService wishlistService;
     private final UserService userService;
@@ -134,6 +135,30 @@ public class WishlistController {
         }
         return ResponseEntity.ok(wishlists);
     }
+    @GetMapping("/homepage")
+    public String shownewHomepage(Model model){
+        List<Wishlist> wishlist = wishlistService.getAllWishlists();
+        model.addAttribute("wishes", new Wishlist());
+        return "homepage";
+    }
+
+    @GetMapping("/registerandlogin")
+    public String showregister(Model model){
+        List<Wishlist> wishlist = wishlistService.getAllWishlists();
+        model.addAttribute("wishes", new Wishlist());
+        return "registerandlogin";
+    }
+
+    
+
+    @GetMapping("/createaccount")
+    public String getCreateAcccount(Model model) {
+        model.addAttribute("newWish", new Wishlist()); // Add an empty Wishlist object to the model
+        return "createaccount"; // Return the view name
+    }
+
+
+
 
 }
 //hmmm

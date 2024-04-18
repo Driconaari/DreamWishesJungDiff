@@ -6,14 +6,11 @@ import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.model.WishlistModel;
 import com.example.dreamwishes.repository.WishlistRepository;
-import com.example.dreamwishes.service.CustomUserDetails;
 import com.example.dreamwishes.service.UserService;
 import com.example.dreamwishes.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,17 +47,23 @@ public class WishlistController {
         return ResponseEntity.ok(wishes);
     }
 
-    @GetMapping("/user")
-    public String getWishlistsByUser(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof CustomUserDetails) {
-            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            Long userId = userDetails.getId();
-            List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
-            model.addAttribute("wishlists", wishlists);
-        }
-        return "wishlist"; // return the name of the Thymeleaf template
+
+
+
+   //old wishlist method
+   /*@GetMapping("/user")
+public String getWishlistsByUser(Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication.getPrincipal() instanceof CustomUserDetails) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+        List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
+        model.addAttribute("wishlists", wishlists);
     }
+    return "wishlist"; // return the name of the Thymeleaf template
+}
+
+    */
 
 
     @PostMapping
@@ -127,13 +130,13 @@ public class WishlistController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Wishlist>> getWishlistsByUserId(@PathVariable Long userId) {
+    public String getWishlistsByUserId(Model model, @PathVariable Long userId) {
         List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
-        if (wishlists.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        if (!wishlists.isEmpty()) {
+            model.addAttribute("wishlists", wishlists);
+            return "wishlist"; // return the name of the Thymeleaf template
         }
-        return ResponseEntity.ok(wishlists);
+        return "error"; // return an error view if no wishlists are found
     }
-
 }
 //hmmm

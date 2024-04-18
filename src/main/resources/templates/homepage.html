@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>DreamWishes</title>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<nav id="navbar">
+    <a href="/" class="active">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+
+    <!-- Modify the login link to point to the login API endpoint -->
+    <div class="login">
+        <a href="/api/users/login">Login</a>
+    </div>
+
+    <!-- Conditionally display "Logout" link if logged in -->
+    <div th:if="${loggedIn}" class="login">
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Conditionally display "Register" link if not logged in -->
+    <div th:unless="${loggedIn}" class="login">
+        <a href="/api/users/register">Register</a>
+    </div>
+</nav>
+
+<header>
+    <h1>DreamWishes</h1>
+</header>
+
+<section>
+    <div>
+        <h2>Welcome to your wishing list!</h2>
+        <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your
+            favorite brands or anything else you desire!</p>
+    </div>
+</section>
+
+<div class="image-container">
+
+    <!-- add images to front page -->
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOG6-ipNxEm846isyDUvC-JBdkjLAD7hr0NQ&s"
+         class="small-image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s"
+         class="small-image">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
+
+</div>
+
+<div th:if="${loggedIn}">
+    <div th:if="${wishlistDTO != null}">
+        <div th:if="${user != null}">
+            <p th:text="${user.id}"></p>
+            <ul>
+                <!-- Use Thymeleaf to loop through the list of items -->
+            </ul>
+        </div>
+    </div>
+    <ul>
+        <li><a href="/api/wishlists/add">Add a wish</a></li>
+        <!-- Display "Go to Wishlist" link only if logged in -->
+        <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
+    </ul>
+</div>
+
+only click on go to wishlist if logged in :)
+<ul>
+    <li><a href="/api/wishlists/add">Add a wish</a></li>
+    <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
+</ul>
+
+Search for a user that you may know or yourself:
+<form action="/api/users/search" method="get">
+    <input type="text" name="username" placeholder="Enter username">
+    <input type="submit" value="Search">
+</form>
+
+</body>
+</html>

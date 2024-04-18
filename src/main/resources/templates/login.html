@@ -3,23 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/login.css">
+
     <title>Login</title>
 </head>
 <body>
-<h2>Login</h2>
-<form action="/api/users/login" method="post">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" th:value="${username}"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <div th:if="${loginError}" class="error">
-        Login failed. Please check your username and password.
-    </div>
-    <button type="submit">Login</button>
 
-</form>
-<a href="/api/users/register">Register</a> <!-- Anchor tag for registration page -->
-<!-- Or -->
-<button onclick="location.href='/api/users/register'">Register</button> <!-- Button for registration page -->
+<ul>
+    <li ><a href="/"><img src="/images/cloud-icon.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
+    <li style="float: right"><a href="/login/"><img src="/images/lock-icon.png" alt="Home" style="width: 25px; height: 25px;"/></a></li>
+    <h1>DreamWishes</h1>
+</ul>
+
+
+<div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+</div>
+
+<!-- <img class="background" src="">
+<div class="container">
+    <div>
+        <form action="/login" method="post">
+            <label for="username">Username:</label><br>
+            <input type="username" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit" value="Login">
+
+            <div th:if="${loginError}" class="error">
+                Login failed. Please check your username and password.
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <a href="/register">Register</a>
+
+    <button onclick="location.href='/register'">Register</button>
+<div/> -->
+<img class="background" src="">
+<div class="container">
+
+    <div>
+
+
+        <form action="/api/users/login" method="post">
+            <h2>Login</h2>
+            <label for="username">Username:</label><br>
+            <input type="username" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+        <button class="button" onclick='location.href="/api/users/register"'>Register</button>
+    </div>
+</div>
+
 </body>
 </html>

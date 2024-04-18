@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
-//hmm
+
 @Controller
 public class HomeController {
 
@@ -30,5 +30,10 @@ public class HomeController {
         WishlistDTO wishlistDTO = wishlistService.getWishlistForUser(userId);
         model.addAttribute("wishlistDTO", wishlistDTO);
         return "index";
+    }
+
+    @GetMapping("/homepage")
+    public String showhomepage() {
+        return "homepage";
     }
 }

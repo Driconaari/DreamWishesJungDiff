@@ -107,7 +107,7 @@ public class WishlistController {
                 Wishlist savedWish = wishlistRepository.save(newWish);
                 System.out.println("Saved wish: " + savedWish); // Log the saved wish
                 if (savedWish != null) {
-                    return "redirect:/";
+                    return "redirect:/homepage";
                 }
             }
         }
@@ -127,22 +127,22 @@ public class WishlistController {
 
     // edit and update wishes
     @PutMapping("/{id}")
-public ResponseEntity<Wishlist> updateWishlist(@PathVariable Long id, @RequestBody Wishlist updatedWishlist) {
-    Wishlist existingWishlist = wishlistService.getWishlistById(id);
-    if (existingWishlist == null) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Wishlist> updateWishlist(@PathVariable Long id, @RequestBody Wishlist updatedWishlist) {
+        Wishlist existingWishlist = wishlistService.getWishlistById(id);
+        if (existingWishlist == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        existingWishlist.setItem_name(updatedWishlist.getItem_name());
+        existingWishlist.setDescription(updatedWishlist.getDescription());
+        existingWishlist.setPrice(updatedWishlist.getPrice());
+        existingWishlist.setAvailable(updatedWishlist.isAvailable());
+        existingWishlist.setCategory(updatedWishlist.getCategory());
+        existingWishlist.setPriority(updatedWishlist.getPriority());
+
+        Wishlist savedWishlist = wishlistService.save(existingWishlist);
+        return ResponseEntity.ok(savedWishlist);
     }
-
-    existingWishlist.setItem_name(updatedWishlist.getItem_name());
-    existingWishlist.setDescription(updatedWishlist.getDescription());
-    existingWishlist.setPrice(updatedWishlist.getPrice());
-    existingWishlist.setAvailable(updatedWishlist.isAvailable());
-    existingWishlist.setCategory(updatedWishlist.getCategory());
-    existingWishlist.setPriority(updatedWishlist.getPriority());
-
-    Wishlist savedWishlist = wishlistService.save(existingWishlist);
-    return ResponseEntity.ok(savedWishlist);
-}
 
 
     @GetMapping("/wishlist/edit/{id}")

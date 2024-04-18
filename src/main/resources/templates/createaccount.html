@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="createaccount.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+<div class="container">
+    <h2>Create an Account:</h2>
+    <form action="/api/users/login" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" th:value="${user.username}"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" th:value="${user.email}"><br><br>
+        <button type="submit">Register</button>
+    </form>
+
+    <style>
+        body {
+
+
+            /* existing styles */
+            background-image: url('/images/clouds-index.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</div>
+</body>
+</html>

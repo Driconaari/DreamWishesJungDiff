@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DreamWishes2ApplicationTests {
+class DreamWishesEntityModel2ApplicationTests {
 
     @Test
     void contextLoads() {

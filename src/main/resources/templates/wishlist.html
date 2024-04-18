@@ -12,6 +12,11 @@
     <p th:text="'Category: ' + ${wishlist.category}"></p>
     <p th:text="'Priority: ' + ${wishlist.priority}"></p>
     <p th:text="'Timestamp: ' + ${wishlist.timestamp}"></p>
+
+    <!-- Edit button -->
+    <a th:href="@{/wishlist/edit/{id}(id=${wishlist.wishlistId})}" class="btn btn-primary">Edit</a>
+
+
     <hr>
 </div>
 </body>

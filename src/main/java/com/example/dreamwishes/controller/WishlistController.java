@@ -50,21 +50,6 @@ public class WishlistController {
 
 
 
-   //old wishlist method
-   /*@GetMapping("/user")
-public String getWishlistsByUser(Model model) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication.getPrincipal() instanceof CustomUserDetails) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        Long userId = userDetails.getId();
-        List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
-        model.addAttribute("wishlists", wishlists);
-    }
-    return "wishlist"; // return the name of the Thymeleaf template
-}
-
-    */
-
 
     @PostMapping
     public ResponseEntity<Wishlist> createWishlist(@RequestBody Wishlist wishlist) {
@@ -138,5 +123,37 @@ public String getWishlistsByUser(Model model) {
         }
         return "error"; // return an error view if no wishlists are found
     }
+
+
+    // edit and update wishes
+    @PutMapping("/{id}")
+public ResponseEntity<Wishlist> updateWishlist(@PathVariable Long id, @RequestBody Wishlist updatedWishlist) {
+    Wishlist existingWishlist = wishlistService.getWishlistById(id);
+    if (existingWishlist == null) {
+        return ResponseEntity.notFound().build();
+    }
+
+    existingWishlist.setItem_name(updatedWishlist.getItem_name());
+    existingWishlist.setDescription(updatedWishlist.getDescription());
+    existingWishlist.setPrice(updatedWishlist.getPrice());
+    existingWishlist.setAvailable(updatedWishlist.isAvailable());
+    existingWishlist.setCategory(updatedWishlist.getCategory());
+    existingWishlist.setPriority(updatedWishlist.getPriority());
+
+    Wishlist savedWishlist = wishlistService.save(existingWishlist);
+    return ResponseEntity.ok(savedWishlist);
+}
+
+
+    @GetMapping("/wishlist/edit/{id}")
+    public String getEditWishPage(Model model, @PathVariable Long id) {
+        Wishlist wishlist = wishlistService.getWishlistById(id);
+        if (wishlist == null) {
+            return "error"; // return an error view if no wishlist is found
+        }
+        model.addAttribute("wish", wishlist); // Change "wishlist" to "wish"
+        return "editwish"; // return the name of the Thymeleaf template
+    }
+
 }
 //hmmm

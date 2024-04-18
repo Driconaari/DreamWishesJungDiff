@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Attraction</title>
-    <link rel="stylesheet" type="text/css" href="/stylesForAddAttraction.css">
+    <title>Edit Wishlist Item</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
 
-<form th:action="@{/attractions/update}" th:object="${attraction}" method="post" class="attraction-form">
+<form th:action="@{/wishlist/update}" th:object="${wishlist}" method="post" class="wishlist-form">
     <!-- Hidden input for ID -->
-    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{wishlistId}" />
 
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" th:field="*{name}" class="form-control" readonly>
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" th:field="*{item_name}" class="form-control">
     </div>
 
     <div class="form-group">
@@ -22,30 +22,22 @@
     </div>
 
     <div class="form-group">
-        <label for="city">City:</label>
-        <select id="city" th:field="*{city}" class="form-control">
-            <option th:each="city : ${cities}" th:value="${city}" th:text="${city}" />
-        </select>
+        <label for="price">Price:</label>
+        <input type="number" id="price" th:field="*{price}" class="form-control">
     </div>
 
-    <!-- Tags selection -->
     <div class="form-group">
-        <label for="tags">Tags:</label>
-        <select id="tags" name="tags" multiple class="form-control">
-            <option th:each="tag : ${tags}" th:value="${tag}" th:text="${tag}">Tag1</option>
-        </select>
+        <label for="category">Category:</label>
+        <input type="text" id="category" th:field="*{category}" class="form-control">
     </div>
 
-    <!-- Location input -->
     <div class="form-group">
-        <label for="location">Location:</label>
-        <input type="text" id="location" th:field="*{location}" class="form-control">
+        <label for="priority">Priority:</label>
+        <input type="number" id="priority" th:field="*{priority}" class="form-control">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
-
 
 </body>
 </html>
-<footer th:insert="~{footer :: footer}"></footer>

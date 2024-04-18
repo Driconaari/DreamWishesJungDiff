@@ -123,4 +123,8 @@ public class Wishlist {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+    public Boolean isAvailable() {
+        return available;
+    }
 }

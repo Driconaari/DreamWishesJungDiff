@@ -2,23 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/profileofuser.css}">
 </head>
 <body>
-<div th:if="${user != null}">
-    <h2>User Profile: </h2>
-    <p th:text="${user.username}"></p>
-</div>
+<div class="container">
+    <!-- User Profile Box -->
+    <div class="profile-box" th:if="${user != null}">
+        <h2>User Profile:</h2>
+        <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+        <!-- Add more fields to display other user information as needed -->
+    </div>
 
-<div th:if="${wishlists != null}">
-    <h2>Wishlists:</h2>
-    <ul>
-        <li th:each="wishlist : ${wishlists}">
-            <!-- Display information about the wishlist -->
-            <p th:text="${wishlist.item_name}"></p>
-            <!-- Add more fields to display other information about the wishlist as needed -->
-        </li>
-    </ul>
+    <!-- Wishlists Box -->
+    <div class="profile-box" th:if="${wishlists != null}">
+        <h2>Wishlists:</h2>
+        <ul>
+            <li th:each="wishlist : ${wishlists}" class="wishlist-item">
+                <!-- Display detailed information about each wishlist item -->
+                <p><strong>Item Name:</strong> <span th:text="${wishlist.item_name}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${wishlist.description}"></span></p>
+                <p><strong>Price:</strong> $<span th:text="${wishlist.price}"></span></p>
+                <p><strong>Available:</strong> <span th:text="${wishlist.available ? 'Yes' : 'No'}"></span></p>
+                <p><strong>Category:</strong> <span th:text="${wishlist.category}"></span></p>
+                <!-- Add more fields to display other information about the wishlist item as needed -->
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

@@ -10,9 +10,10 @@ ul {
     overflow: hidden;
     background-color: #a9cdf3;
     z-index: 999;
-
-
+    opacity: 0.8;
 }
+
+
 
 li {
     float: left;

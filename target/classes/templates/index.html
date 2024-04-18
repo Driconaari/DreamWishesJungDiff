@@ -19,10 +19,15 @@
 
 <div class="center-container">
     <a href="/api/users/login">
-        <button class="big-button">Create a Wish!</button>
+        <button class="big-button">Login to Create a Wish!</button>
     </a>
 </div>
 
+Search for a user that you may know here:
+<form action="/api/users/search" method="get">
+    <input type="text" name="username" placeholder="Enter username">
+    <input type="submit" value="Search">
+</form>
 <style>
     body, html {
         margin: 0;

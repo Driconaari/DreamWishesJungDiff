@@ -6,14 +6,11 @@ import com.example.dreamwishes.entity.Users;
 import com.example.dreamwishes.entity.Wishlist;
 import com.example.dreamwishes.model.WishlistModel;
 import com.example.dreamwishes.repository.WishlistRepository;
-import com.example.dreamwishes.service.CustomUserDetails;
 import com.example.dreamwishes.service.UserService;
 import com.example.dreamwishes.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +24,8 @@ import java.util.List;
 
 // WishlistController.java
 @Controller
-@RequestMapping("api/wishlists")
+@RequestMapping("/api/wishlists")
 public class WishlistController {
-
 
     private final WishlistService wishlistService;
     private final UserService userService;
@@ -51,17 +47,8 @@ public class WishlistController {
         return ResponseEntity.ok(wishes);
     }
 
-    @GetMapping("/user")
-    public String getWishlistsByUser(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof CustomUserDetails) {
-            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-            Long userId = userDetails.getId();
-            List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
-            model.addAttribute("wishlists", wishlists);
-        }
-        return "wishlist"; // return the name of the Thymeleaf template
-    }
+
+
 
 
     @PostMapping
@@ -128,37 +115,45 @@ public class WishlistController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Wishlist>> getWishlistsByUserId(@PathVariable Long userId) {
+    public String getWishlistsByUserId(Model model, @PathVariable Long userId) {
         List<Wishlist> wishlists = wishlistService.getWishlistsByUserId(userId);
-        if (wishlists.isEmpty()) {
+        if (!wishlists.isEmpty()) {
+            model.addAttribute("wishlists", wishlists);
+            return "wishlist"; // return the name of the Thymeleaf template
+        }
+        return "error"; // return an error view if no wishlists are found
+    }
+
+
+    // edit and update wishes
+    @PutMapping("/{id}")
+    public ResponseEntity<Wishlist> updateWishlist(@PathVariable Long id, @RequestBody Wishlist updatedWishlist) {
+        Wishlist existingWishlist = wishlistService.getWishlistById(id);
+        if (existingWishlist == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(wishlists);
-    }
-    @GetMapping("/homepage")
-    public String shownewHomepage(Model model){
-        List<Wishlist> wishlist = wishlistService.getAllWishlists();
-        model.addAttribute("wishes", new Wishlist());
-        return "homepage";
-    }
 
-    @GetMapping("/registerandlogin")
-    public String showregister(Model model){
-        List<Wishlist> wishlist = wishlistService.getAllWishlists();
-        model.addAttribute("wishes", new Wishlist());
-        return "registerandlogin";
-    }
+        existingWishlist.setItem_name(updatedWishlist.getItem_name());
+        existingWishlist.setDescription(updatedWishlist.getDescription());
+        existingWishlist.setPrice(updatedWishlist.getPrice());
+        existingWishlist.setAvailable(updatedWishlist.isAvailable());
+        existingWishlist.setCategory(updatedWishlist.getCategory());
+        existingWishlist.setPriority(updatedWishlist.getPriority());
 
-    
-
-    @GetMapping("/createaccount")
-    public String getCreateAcccount(Model model) {
-        model.addAttribute("newWish", new Wishlist()); // Add an empty Wishlist object to the model
-        return "createaccount"; // Return the view name
+        Wishlist savedWishlist = wishlistService.save(existingWishlist);
+        return ResponseEntity.ok(savedWishlist);
     }
 
 
-
+    @GetMapping("/wishlist/edit/{id}")
+    public String getEditWishPage(Model model, @PathVariable Long id) {
+        Wishlist wishlist = wishlistService.getWishlistById(id);
+        if (wishlist == null) {
+            return "error"; // return an error view if no wishlist is found
+        }
+        model.addAttribute("wish", wishlist); // Change "wishlist" to "wish"
+        return "editwish"; // return the name of the Thymeleaf template
+    }
 
 }
 //hmmm

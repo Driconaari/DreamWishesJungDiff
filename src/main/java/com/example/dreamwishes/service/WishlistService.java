@@ -115,4 +115,7 @@ public class WishlistService {
     }
 
 
+    public Wishlist save(Wishlist existingWishlist) {
+        return wishlistRepository.save(existingWishlist);
+    }
 }

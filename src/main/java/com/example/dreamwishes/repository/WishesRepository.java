@@ -61,7 +61,7 @@ public class WishesRepository {
             String tagsAsString = String.join(",", updatedWishes.getTags());
             preparedStatement.setString(4, tagsAsString);
 
-            preparedStatement.setString(5, updatedWishes.getLocation());
+            preparedStatement.setString(5, updatedWishes.getPrice());
             preparedStatement.setInt(6, updatedWishes.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class WishesRepository {
             String tagsAsString = String.join(",", attraction.getTags());
             preparedStatement.setString(3, tagsAsString);
 
-            preparedStatement.setString(4, attraction.getLocation());
+            preparedStatement.setString(4, attraction.getPrice());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -77,7 +77,7 @@ public class Wishes {
         return tags;
     }
 
-    public String getLocation() {
+    public String getPrice() {
         return location;
     }
 
@@ -85,7 +85,7 @@ public class Wishes {
         this.tags = tags;
     }
 
-    public void setLocation(String defaultLocation) {
+    public void setPrice(String defaultLocation) {
         this.location = defaultLocation;
     }
 

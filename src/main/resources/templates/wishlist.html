@@ -12,9 +12,7 @@
 <div th:insert="~{navbar :: navbar}"></div>
 
 <ul>
-    <header>
-        <h1>DreamWishes</h1>
-    </header>
+
 </ul>
 
 <h1>Your Wishlist</h1>
@@ -30,6 +28,7 @@
     </tr>
     </thead>
     <body>
+
     <tr th:each="wish : ${wishes}">
         <td th:text="${wish.name}">Name</td>
         <td th:text="${wish.description}">Description</td>
@@ -49,6 +48,16 @@
         </td>
     </tr>
     </body>
+    <style>
+        body {
+
+
+            /* existing styles */
+            background-image: url('/images/gates.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </table>
 </body>
 <footer th:insert="~{footer :: footer}"></footer>

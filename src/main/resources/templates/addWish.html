@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Add Attraction</title>
     <link rel="stylesheet" type="text/css" href="/stylesForAddAttraction.css">
+    <link rel="stylesheet" type="text/css" href="/navbar.css">
 </head>
 <body>
 
@@ -31,8 +32,8 @@
 
 
     <div class="form-group">
-        <label for="location">Price of Wish:</label>
-        <input type="text" id="location" name="location" class="form-control" th:value="${attraction.location}">
+        <label for="price">Price of Wish:</label>
+        <input type="text" id="price" name="price" class="form-control" th:value="${attraction.price}">
     </div>
     <!-- Tags selection -->
     <!-- Tags selection -->
@@ -46,9 +47,18 @@
     <!-- Input field for adding new tags -->
     <input type="text" id="newTag" name="newTag" class="form-control" placeholder="Add new tag">
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
+<style>
+    body {
 
+
+        /* existing styles */
+        background-image: url('/images/gates.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 </body>
 </html>
 <footer th:insert="~{footer :: footer}"></footer>

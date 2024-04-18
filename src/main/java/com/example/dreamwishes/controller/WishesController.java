@@ -41,7 +41,7 @@ public class WishesController {
         // Perform login logic here
 
         // Redirect to dashboard or login page based on login result
-        return "redirect:/dashboard"; // Example redirect to dashboard page
+        return "redirect:/homepage"; // Example redirect to dashboard page
     }
 
 
@@ -88,7 +88,7 @@ public class WishesController {
         newAttraction.setDescription("Description");
         newAttraction.setCity("City");
         newAttraction.setTags("Tags");
-        newAttraction.setLocation("Location");
+        newAttraction.setPrice("Location");
 
         // Fetch cities from the database
         List<String> cities = wishesRepository.getCities();
@@ -113,7 +113,7 @@ public class WishesController {
         attraction.setDescription("Description");
         attraction.setCity("City");
         attraction.setTags("Tags");
-        attraction.setLocation("Location");
+        attraction.setPrice("Location");
 
         // Now you can save this new attraction using the service layer
         dreamWishesService.saveAttraction(attraction);

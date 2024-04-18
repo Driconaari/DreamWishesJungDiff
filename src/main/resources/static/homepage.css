@@ -167,7 +167,7 @@ button {
     z-index: 0;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 1 );
 }
    .logout-button {
     background-color: #de1616;
@@ -202,7 +202,7 @@ button:hover {
 .card02,
 .card03,
 .card04 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
     padding: 16px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0);

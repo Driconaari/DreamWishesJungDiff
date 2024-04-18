@@ -9,14 +9,55 @@ body, h1, h2, p, ul {
 /* Set global font styles */
 body {
     font-family: Arial, sans-serif;
+}
 
+/* CSS for the form */
+form {
+    position: relative; /* Relative position */
+    bottom: 20px; /* Distance from the bottom */
+    right: 110px;
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #f9f9f9; /* Background color */
+    padding: 20px; /* Padding */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    font-size: 20px; /* Font size */
+    opacity: 0.8;
+}
+
+/* CSS for the form heading */
+form h2 {
+    margin-top: 0; /* Remove top margin */
+}
+
+/* CSS for form inputs */
+form input[type="text"],
+form input[type="submit"] {
+    width: 90%; /* Adjusted width */
+    padding: 10px; /* Padding */
+    margin-bottom: 10px; /* Margin bottom */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Font size */
+}
+
+/* CSS for form submit button */
+form input[type="submit"] {
+    background-color: #007bff; /* Background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Hover effect for form submit button */
+form input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker background color */
 }
 
 
 .column01,
-.column02,
-.column03,
-.column04 {
+.column02{
     float: left;
     width: 30%;
     padding: 0 10px;
@@ -25,8 +66,7 @@ body {
     transform: translate(1px, 1px);
 }
 
-.column02,
-.column04 {
+.column02{
     float: right;
     margin-left: 0;
     margin-right: 170px;
@@ -45,19 +85,13 @@ body {
 }
 
 .card01,
-.card02,
-.card04 {
+.card02{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
     background-color: #f0eeee;
 }
-.card03 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center ;
-    background-color: red ;
-}
+
 
 img.background {
     position: absolute;
@@ -84,7 +118,7 @@ section {
     padding: 20px;
 }
 
-/* Welcome message styles */
+
 h2 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -98,31 +132,6 @@ p {
 
 }
 
-
-
-/* Image container styles */
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.small-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 10px;
-    animation: floatAnimation 1s ease infinite alternate; /* Animation applied */
-}
-
-@keyframes floatAnimation {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-15px);
-    }
-}
 
 /* Wish List styles */
 h2 {
@@ -173,28 +182,6 @@ button {
     transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 1 );
 }
-.logout-button {
-    background-color: #de1616;
-    position: relative;
-    margin: 0;
-    padding: 0.8em 1em;
-    outline: none;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    text-transform: uppercase;
-    border-radius: 10px;
-    color: #fff;
-    font-weight: 300;
-    font-size: 18px;
-    font-family: inherit;
-    z-index: 0;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
-}
 
 
 button:hover {
@@ -203,9 +190,7 @@ button:hover {
 
 /* Style the counter cards */
 .card01,
-.card02,
-.card03,
-.card04 {
+.card02{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
     padding: 16px;
     text-align: center;
@@ -215,9 +200,7 @@ button:hover {
 
 /* Center the buttons */
 .card01 button,
-.card02 button,
-.card03 button,
-.card04 button {
+.card02 button{
     margin: 0 auto; /* Center horizontally */
     display: block; /* Ensure button takes full width */
 }

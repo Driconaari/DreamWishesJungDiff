@@ -11,6 +11,49 @@ h1{
 }
 
 
+/* CSS for the form */
+form {
+    position: relative; /* Relative position */
+    bottom: 20px; /* Distance from the bottom */
+    background-color: #f9f9f9; /* Background color */
+    padding: 20px; /* Padding */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    font-size: 20px; /* Font size */
+    opacity: 0.8;
+}
+
+/* CSS for the form heading */
+form h2 {
+    margin-top: 0; /* Remove top margin */
+}
+
+/* CSS for form inputs */
+form input[type="text"],
+form input[type="submit"] {
+    width: 90%; /* Adjusted width */
+    padding: 10px; /* Padding */
+    margin-bottom: 10px; /* Margin bottom */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Font size */
+}
+
+/* CSS for form submit button */
+form input[type="submit"] {
+    background-color: #007bff; /* Background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Hover effect for form submit button */
+form input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker background color */
+}
+
+
 img.background {
     position: absolute;
     left: 0px;

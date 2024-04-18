@@ -3,80 +3,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="homepage.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <title>DreamWishes</title>
 </head>
 <body>
 
 <!-- Navigation bar -->
-<nav id="navbar">
-    <a href="/" class="active">Home</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
 
-    <!-- Modify the login link to point to the login API endpoint -->
-    <div class="login">
-        <a href="/api/users/login">Login</a>
-    </div>
-
-    <!-- Conditionally display "Logout" link if logged in -->
-    <div th:if="${loggedIn}" class="login">
-        <a href="/logout">Logout</a>
-    </div>
-
-    <!-- Conditionally display "Register" link if not logged in -->
-    <div th:unless="${loggedIn}" class="login">
-        <a href="/api/users/register">Register</a>
-    </div>
-</nav>
-
-<header>
-    <h1>DreamWishes</h1>
-</header>
-
-<section>
-    <div>
-        <h2>Welcome to your wishing list!</h2>
-        <p>DreamWishes allows you to create and share your dreams with friends and family. Start adding wishes from your
-            favorite brands or anything else you desire!</p>
-    </div>
-</section>
-
-<div class="image-container">
-
-    <!-- add images to front page -->
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOG6-ipNxEm846isyDUvC-JBdkjLAD7hr0NQ&s"
-         class="small-image">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3StnBW4tX4ID2VroW64Sb0QLOGea9qmmk3kgWo3YOA&s"
-         class="small-image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Old_Nike_logo.jpg" class="small-image">
-
-</div>
-
-<div th:if="${loggedIn}">
-    <div th:if="${wishlistDTO != null}">
-        <div th:if="${user != null}">
-            <p th:text="${user.id}"></p>
-            <ul>
-                <!-- Use Thymeleaf to loop through the list of items -->
-            </ul>
+<ul id="navbar">
+    <li><a href="/" class="active"><img src="/images/cloud-icon.png" alt="Home" style="width: 30px; height: 30px;"></a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><!-- Conditionally display "Register" link if not logged in -->
+        <div th:unless="${loggedIn}" class="login">
+            <a href="/api/users/register">Register</a>
         </div>
-    </div>
-    <ul>
-        <li><a href="/api/wishlists/add">Add a wish</a></li>
-        <!-- Display "Go to Wishlist" link only if logged in -->
-        <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
-    </ul>
-</div>
+    </li>
 
-only click on go to wishlist if logged in :)
-<ul>
-    <li><a href="/api/wishlists/add">Add a wish</a></li>
-    <li><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></li>
+    <li style="float: right">
+        <div class="login">
+            <a href="/api/users/login"><img src="/images/lock-icon.png" alt="Login" style="width: 25px; height: 25px;"></a>
+        </div>
+
+        <!-- Conditionally display "Logout" link if logged in -->
+        <div th:if="${loggedIn}" class="login">
+            <a href="/logout">Logout</a>
+        </div>
+
+    </li>
+
+    <h1>DreamWishes</h1>
 </ul>
 
-Search for a user that you may know or yourself:
-<form action="/api/users/search" method="get">
+
+
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/dreaming_1.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        z-index: -1; /* Ensure the background is behind other content */
+    }
+
+    /* Additional styling for content */
+    .content {
+        position: relative;
+        z-index: 1; /* Ensure the content is on top of the background */
+    }
+</style>
+
+
+<div class="background-container"></div>
+<div class="content">
+
+</div>
+
+
+
+
+<div class="row" style="margin-top: 200px">
+    <div class="container">
+        <div class="column01">
+            <div class="card01">
+                <button>
+                    <h1><a href="/api/wishlists/add">Add a wish</a></h1>
+                </button>
+                <p>Click here to add a Wish</p>
+                <p>           </p>
+                <table></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="column02">
+        <div class="card02">
+            <button>
+                <h1><a th:href="@{/api/wishlists/user/{userId}(userId=${session.userId})}">Go to Wish List</a></h1>
+            </button>
+            <p>Click here to see your Wishlist!</p>
+            <p>Only click here if you have added a wish</p>
+        </div>
+
+
+
+
+<form action="/api/users/search" method="get" >
+    <h2>Search for a user</h2>
     <input type="text" name="username" placeholder="Enter username">
     <input type="submit" value="Search">
 </form>

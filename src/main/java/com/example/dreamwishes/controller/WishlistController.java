@@ -107,7 +107,7 @@ public class WishlistController {
                 Wishlist savedWish = wishlistRepository.save(newWish);
                 System.out.println("Saved wish: " + savedWish); // Log the saved wish
                 if (savedWish != null) {
-                    return "redirect:/";
+                    return "redirect:/homepage";
                 }
             }
         }

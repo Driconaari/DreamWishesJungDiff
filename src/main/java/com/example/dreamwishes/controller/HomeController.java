@@ -31,4 +31,9 @@ public class HomeController {
         model.addAttribute("wishlistDTO", wishlistDTO);
         return "index";
     }
+
+    @GetMapping("/homepage")
+    public String showhomepage() {
+        return "homepage";
+    }
 }

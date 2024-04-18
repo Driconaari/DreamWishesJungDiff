@@ -47,12 +47,13 @@ public class UserController {
         if (userService.login(username, password)) {
             session.setAttribute("loggedIn", true);
             session.setAttribute("userId", userService.getUserId(username).orElse(null));
-            return "redirect:/"; // Redirect to index page after successful login
+            return "redirect:/homepage"; // Redirect to homepage.html after successful login
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";
         }
     }
+
 
 
     @GetMapping("/register")
